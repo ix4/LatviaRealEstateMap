@@ -41,7 +41,7 @@ class App extends React.Component {
     this.onToolbarUpdate = this.onToolbarUpdate.bind(this);
 
     this.state = {
-      category: 'apartment',
+      category: 'land',
       type: 'sell'
     };
 
@@ -54,7 +54,7 @@ class App extends React.Component {
   }
 
   async onMapCreated(map) {
-    map.data.loadGeoJson('https://raw.githubusercontent.com/brokalys/sls-data-extraction/master/data/riga-geojson.json')
+    map.data.loadGeoJson('https://raw.githubusercontent.com/brokalys/sls-data-extraction/master/data/latvia-geojson.json')
 
     this.map = map;
     this.infoWindow = new window.google.maps.InfoWindow();
@@ -122,10 +122,9 @@ class App extends React.Component {
       const regionName = feature.getProperty('apkaime');
       const region = this.findRegionByName(regionName);
 
-      if (!region || region.price <= 0) {
+      if (!region || region.price <= 0 || feature.getProperty('Level') < 3) {
         return {
-          strokeWeight: 0,
-          fillOpacity: 0,
+          visible: false,
         };
       }
 
@@ -133,7 +132,8 @@ class App extends React.Component {
         strokeColor: region.color,
         strokeWeight: .1,
         fillColor: region.color,
-        fillOpacity: 0.4,
+        fillOpacity: 0.5,
+        // zIndex: feature.getProperty('Level'),
       };
     });
 
@@ -185,7 +185,7 @@ class App extends React.Component {
   }
 
   async loadPriceData() {
-    const response = await fetch(`https://raw.githubusercontent.com/brokalys/data/master/data/${this.state.category}/${this.state.type}-monthly.csv`);
+    const response = await fetch(`https://raw.githubusercontent.com/brokalys/data/master/data/${this.state.category}/${this.state.type}-monthly-latvia.csv`);
     const csvData = await response.text();
     const data = parse(csvData);
 
