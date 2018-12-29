@@ -112,21 +112,27 @@ class SideMenu extends React.Component {
   render() {
     const columns = [
       {
-        Header: 'Region name',
+        Header: 'Region',
         headerClassName: 'text-left',
-        accessor: 'name',
-      },
-      {
-        Header: 'Median Price',
-        headerClassName: 'text-right',
-        accessor: 'price',
-        className: 'text-right',
-      },
-      {
-        Header: 'BtR ratio',
-        headerClassName: 'text-right',
-        accessor: 'btrRatio',
-        className: 'text-right',
+        columns: [
+          {
+            Header: 'Name',
+            headerClassName: 'text-left',
+            accessor: 'name',
+          },
+          {
+            Header: 'Median Price',
+            headerClassName: 'text-right',
+            accessor: 'price',
+            className: 'text-right',
+          },
+          {
+            Header: 'BtR ratio',
+            headerClassName: 'text-right',
+            accessor: 'btrRatio',
+            className: 'text-right',
+          },
+        ],
       },
       {
         Header: 'YoY change',

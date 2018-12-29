@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const GET_LOCAL_STATE = gql`
-  {
+  query {
     start_date @client
     end_date @client
     category @client
@@ -23,6 +23,24 @@ export const GET_REGION_TABLE_DATA = gql`
       price {
         count
       }
+    }
+  }
+`;
+
+export const GET_CHART_DATA = gql`
+  query {
+    getChartData @client {
+      date
+      count
+      pricePerSqm
+    }
+  }
+`;
+
+export const GET_MAP_DATA = gql`
+  query {
+    getMapData @client {
+      geojson
     }
   }
 `;

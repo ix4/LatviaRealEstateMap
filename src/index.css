@@ -1,7 +1,11 @@
-@import "https://bootswatch.com/4/darkly/bootstrap.css"; /* @todo: import properly */
-@import "~flag-icon-css/css/flag-icon.css";
+@import 'bootswatch-darkly.css';
+@import '~flag-icon-css/css/flag-icon.css';
+@import '~nprogress/nprogress.css';
 
-html, body, #root, .wrapper {
+html,
+body,
+#root,
+.wrapper {
   height: 100%;
   margin: 0;
   padding: 0;

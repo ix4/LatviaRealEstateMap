@@ -6,8 +6,6 @@
   "dependencies": {
     "@bugsnag/plugin-react": "^5.0.1",
     "apollo-boost": "^0.1.23",
-    "bootstrap": "^4.0.0",
-    "colormap": "^2.3.0",
     "core-js": "^2.5.4",
     "eslint-plugin-prettier": "^3.0.1",
     "flag-icon-css": "^3.2.1",

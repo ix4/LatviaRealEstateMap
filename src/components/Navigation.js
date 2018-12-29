@@ -29,7 +29,7 @@ class Navigation extends React.Component {
 
   render() {
     return (
-      <Navbar light expand="md">
+      <Navbar color="light" light expand="md">
         <NavbarBrand href="/">
           <img
             src="/favicon.png"
