@@ -1,5 +1,4 @@
 @import "https://bootswatch.com/4/darkly/bootstrap.css"; /* @todo: import properly */
-@import "~react-vis/dist/style.css";
 @import "~flag-icon-css/css/flag-icon.css";
 
 html, body, #root, .wrapper {
