@@ -1,22 +1,39 @@
 import React from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
-import loadable from 'react-loadable';
-import Loading from './components/Loading';
+import { Query } from 'react-apollo';
+import progress from 'nprogress';
 
-const Home = loadable({
-  loader: () => import('./pages/Home'),
-  loading: Loading,
+import { GET_LOCAL_STATE, GET_REGION_TABLE_DATA } from './apollo/Query';
+import Home from './pages/Home';
+
+progress.configure({
+  showSpinner: false,
+  speed: 1000,
+  trickleSpeed: 150,
 });
 
 class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <div className="wrapper" style={{height: 'calc(100% - 56px)'}}>
-          <Route exact path="/" component={Home} />
-        </div>
-      </Router>
+      <Query query={GET_LOCAL_STATE}>
+        {({ data }) => (
+          <Query query={GET_REGION_TABLE_DATA} variables={data}>
+            {({ loading, data }) => {
+              if (loading) {
+                progress.start();
+              } else {
+                progress.done();
+              }
+
+              if (!Object.keys(data).length && loading) return <p>Loading...</p>;
+
+              return (
+                <Home data={data} />
+              );
+            }}
+          </Query>
+        )}
+      </Query>
     );
   }
 

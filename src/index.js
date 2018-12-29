@@ -11,10 +11,20 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+import { resolvers } from './apollo/Resolvers';
+
 const bugsnagClient = window.bugsnagClient;
 
 const client = new ApolloClient({
-  uri: "https://api.brokalys.com"
+  uri: "https://api.brokalys.com",
+  clientState: {
+    resolvers,
+    defaults: {
+      category: 'apartment'.toUpperCase(),
+      start_date: '2018-01-01',
+      end_date: '2018-02-01',
+    },
+  },
 });
 
 if (bugsnagClient) {

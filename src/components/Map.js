@@ -75,6 +75,7 @@ class Map extends React.Component {
           defaultZoom={this.props.zoom}
           options={{ styles }}
           onGoogleApiLoaded={({ map }) => handleApiLoaded(map)}
+          yesIWantToUseGoogleMapApiInternals={true}
         >
         </GoogleMapReact>
       </div>

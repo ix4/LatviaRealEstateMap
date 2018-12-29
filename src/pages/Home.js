@@ -1,6 +1,4 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import { Button, Row, Card, CardBody, CardText, CardTitle, Col, Container } from 'reactstrap';
 
 import BelowMap from '../components/BelowMap';
@@ -11,7 +9,7 @@ import SideMenu from '../components/SideMenu';
 class Home extends React.Component {
   render() {
     const regions = this.props.data.getRegions;
-    console.log(regions);
+    console.log(regions ? JSON.stringify(regions[0]) : null);
 
     return (
       <div>
@@ -47,10 +45,4 @@ class Home extends React.Component {
   }
 }
 
-export default graphql(gql`
-  {
-    getRegions(start_date: "2018-01-01", end_date: "2018-02-01") {
-      name
-    }
-  }
-`)(Home);
+export default Home;

@@ -1,20 +1,18 @@
 import React from 'react';
+import { Mutation } from 'react-apollo';
 import ReactTable from 'react-table';
 import {
   Card,
   CardBody,
-  CardTitle,
   Col,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
   Form,
   FormGroup,
   Input,
   Label,
   Row,
-  UncontrolledDropdown,
 } from 'reactstrap';
+
+import { SET_SELECTED_DATES } from '../apollo/Mutation';
 
 import 'react-table/react-table.css';
 
@@ -25,8 +23,6 @@ function random(low, high) {
 class SideMenu extends React.Component {
   constructor (props) {
     super(props);
-
-    this.tableRowSubComponent.bind(this);
 
     this.state = {
       category: 'apartment',
@@ -43,6 +39,15 @@ class SideMenu extends React.Component {
       btrRatio: (random(1, 10) / 100).toFixed(2),
       median: random(0, 100).toFixed(2),
     }));
+  }
+
+  handleChange(event, setSelectedDate) {
+    setSelectedDate({
+      variables: {
+        start_date: event.target.value,
+        end_date: '2018-02-01',
+      },
+    })
   }
 
   render() {
@@ -101,12 +106,17 @@ class SideMenu extends React.Component {
             </Col>
 
             <Col sm={6}>
-              <FormGroup>
-                <Label for="exampleSelect">Selected Month</Label>
-                <Input type="select" name="select" id="exampleSelect">
-                  <option>November 2018</option>
-                </Input>
-              </FormGroup>
+              <Mutation mutation={SET_SELECTED_DATES}>
+                {setSelectedDate => (
+                  <FormGroup>
+                    <Label for="exampleSelect">Selected Month</Label>
+                    <Input type="select" name="select" id="exampleSelect" onChange={(event) => this.handleChange(event, setSelectedDate)}>
+                      <option value="2018-01-20">November 2018</option>
+                      <option value="2018-01-10">December 2018</option>
+                    </Input>
+                  </FormGroup>
+                )}
+              </Mutation>
             </Col>
           </Row>
         </Form>
@@ -123,20 +133,6 @@ class SideMenu extends React.Component {
               showPageSizeOptions={false} />
           </CardBody>
         </Card>
-      </div>
-    );
-  }
-
-  tableRowSubComponent({ original: row }) {
-    return (
-      <div style={{padding: '10px'}}>
-        <p>Count: { row.count }</p>
-        <p>Min: { row.min }</p>
-        <p>max: { row.max }</p>
-        <p>Median: { row.median }</p>
-        <p>Mode: { row.mode }</p>
-        <p>Mean: { row.mean }</p>
-        <p>Standard deviation: { row.standardDev }</p>
       </div>
     );
   }
