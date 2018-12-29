@@ -12,7 +12,7 @@ import {
 
 import { GET_CHART_DATA } from '../apollo/Query';
 
-class BelowMap extends React.Component {
+export class Chart extends React.Component {
   render() {
     return (
       <Query query={GET_CHART_DATA}>
@@ -35,5 +35,3 @@ class BelowMap extends React.Component {
     );
   }
 }
-
-export default BelowMap;

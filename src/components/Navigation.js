@@ -11,7 +11,7 @@ import {
   UncontrolledDropdown,
 } from 'reactstrap';
 
-class Navigation extends React.Component {
+export class Navigation extends React.Component {
   constructor(props) {
     super(props);
 
@@ -66,5 +66,3 @@ class Navigation extends React.Component {
     );
   }
 }
-
-export default Navigation;

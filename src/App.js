@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 import progress from 'nprogress';
 
 import { GET_LOCAL_STATE, GET_REGION_TABLE_DATA } from './apollo/Query';
-import Home from './pages/Home';
+import { Home } from './pages/Home';
 
 progress.configure({
   showSpinner: false,
@@ -11,7 +11,7 @@ progress.configure({
   trickleSpeed: 150,
 });
 
-class App extends React.Component {
+export class App extends React.Component {
   render() {
     return (
       <Query query={GET_LOCAL_STATE}>
@@ -35,5 +35,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;

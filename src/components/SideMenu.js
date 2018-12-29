@@ -20,7 +20,7 @@ function random(low, high) {
   return Math.random() * (high - low) + low;
 }
 
-class SideMenu extends React.Component {
+export class SideMenu extends React.Component {
   constructor(props) {
     super(props);
 
@@ -224,5 +224,3 @@ class SideMenu extends React.Component {
     );
   }
 }
-
-export default SideMenu;

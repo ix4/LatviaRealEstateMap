@@ -4,7 +4,7 @@ import GoogleMapReact from 'google-map-react';
 
 import { GET_MAP_DATA } from '../apollo/Query';
 
-class Map extends React.Component {
+export class Map extends React.Component {
   static defaultProps = {
     center: {
       lat: 56.98,
@@ -76,5 +76,3 @@ class Map extends React.Component {
     );
   }
 }
-
-export default Map;

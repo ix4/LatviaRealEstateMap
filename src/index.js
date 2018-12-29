@@ -5,12 +5,11 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ReactDOM from 'react-dom';
 import bugsnagReact from '@bugsnag/plugin-react';
+
 import './index.css';
-import App from './App';
+import { App } from './App';
 import registerServiceWorker from './registerServiceWorker';
-
 import mockMapGeojson from './geojson.json';
-
 import { resolvers } from './apollo/Resolvers';
 
 const bugsnagClient = window.bugsnagClient;

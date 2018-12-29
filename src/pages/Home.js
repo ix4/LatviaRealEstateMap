@@ -1,21 +1,13 @@
 import React from 'react';
-import {
-  Button,
-  Row,
-  Card,
-  CardBody,
-  CardText,
-  CardTitle,
-  Col,
-  Container,
-} from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 
-import BelowMap from '../components/BelowMap';
-import Map from '../components/Map';
-import Navigation from '../components/Navigation';
-import SideMenu from '../components/SideMenu';
+import { Chart } from '../components/Chart';
+import { Map } from '../components/Map';
+import { Navigation } from '../components/Navigation';
+import { NewsletterSignup } from '../components/NewsletterSignup';
+import { SideMenu } from '../components/SideMenu';
 
-class Home extends React.Component {
+export class Home extends React.Component {
   render() {
     const regions = this.props.data.getRegions;
     console.log(regions ? JSON.stringify(regions[0]) : null);
@@ -42,19 +34,10 @@ class Home extends React.Component {
 
           <Row className="mb-3">
             <Col md="6" lg="7" xl="8" className="mt-3">
-              <BelowMap />
+              <Chart />
             </Col>
             <Col md="6" lg="5" xl="4" className="mt-3 pl-md-0">
-              <Card color="primary">
-                <CardBody>
-                  <CardTitle>Newsletter</CardTitle>
-                  <CardText>
-                    Want to receive notifications about Brokalys platform
-                    updates to your email?
-                  </CardText>
-                  <Button>Sign up</Button>
-                </CardBody>
-              </Card>
+              <NewsletterSignup />
             </Col>
           </Row>
         </Container>
@@ -62,5 +45,3 @@ class Home extends React.Component {
     );
   }
 }
-
-export default Home;
