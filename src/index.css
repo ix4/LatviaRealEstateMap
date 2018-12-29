@@ -1,5 +1,9 @@
+@import "https://bootswatch.com/4/darkly/bootstrap.css";
+/*@import "https://bootswatch.com/4/superhero/bootstrap.css";*/
+/*@import "https://bootswatch.com/4/solar/bootstrap.css";*/
 @import "~react-vis/dist/style.css";
 @import "~rc-slider/assets/index.css";
+@import "~flag-icon-css/css/flag-icon.css";
 
 html, body, #root, .wrapper {
   height: 100%;
