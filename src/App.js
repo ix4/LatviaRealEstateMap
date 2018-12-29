@@ -17,12 +17,19 @@ export class App extends React.Component {
       <Query query={GET_LOCAL_STATE}>
         {({ data }) => (
           <Query query={GET_REGION_TABLE_DATA} variables={data}>
-            {({ loading, data }) => {
+            {({ loading, error, data }) => {
               if (loading) {
                 progress.start();
               } else {
                 progress.done();
               }
+
+              if (error)
+                return (
+                  <p>
+                    Error: <pre>{JSON.stringify(error, null, 2)}</pre>
+                  </p>
+                );
 
               if (!Object.keys(data).length && loading)
                 return <p>Loading...</p>;
