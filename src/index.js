@@ -16,7 +16,7 @@ const bugsnagClient = window.bugsnagClient;
 
 const client = new ApolloClient({
   uri: 'https://api.brokalys.com',
-  connectToDevTools: true,
+  connectToDevTools: true, // @todo: disable for prod
   clientState: {
     resolvers,
     defaults: {

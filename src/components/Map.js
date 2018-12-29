@@ -1,7 +1,7 @@
 import React from 'react';
-import { Query } from 'react-apollo';
 import GoogleMapReact from 'google-map-react';
 
+import { QueryWithGlobalVariables } from '../components/QueryWithGlobalVariables';
 import { GET_MAP_DATA } from '../apollo/Query';
 
 export class Map extends React.Component {
@@ -53,7 +53,7 @@ export class Map extends React.Component {
   render() {
     const handleApiLoaded = this.handleApiLoaded;
     return (
-      <Query query={GET_MAP_DATA}>
+      <QueryWithGlobalVariables query={GET_MAP_DATA}>
         {({
           data: {
             getMapData: { geojson: data },
@@ -72,7 +72,7 @@ export class Map extends React.Component {
             />
           </div>
         )}
-      </Query>
+      </QueryWithGlobalVariables>
     );
   }
 }
