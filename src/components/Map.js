@@ -6,17 +6,23 @@ const styles = [
   {
     featureType: 'all',
     elementType: 'all',
-    stylers: [{
-      invert_lightness: true,
-    }, {
-      saturation: 10,
-    }, {
-      lightness: 30,
-    }, {
-       gamma: 0.5,
-    }, {
-      hue: '#435158',
-    }],
+    stylers: [
+      {
+        invert_lightness: true,
+      },
+      {
+        saturation: 10,
+      },
+      {
+        lightness: 30,
+      },
+      {
+        gamma: 0.5,
+      },
+      {
+        hue: '#435158',
+      },
+    ],
   },
 ];
 
@@ -37,7 +43,9 @@ class Map extends React.Component {
     });
     let colorIndex = 0;
 
-    map.data.loadGeoJson('https://raw.githubusercontent.com/brokalys/sls-data-extraction/master/data/riga-geojson.json');
+    map.data.loadGeoJson(
+      'https://raw.githubusercontent.com/brokalys/sls-data-extraction/master/data/riga-geojson.json',
+    );
 
     map.data.setStyle((feature) => {
       const regionName = feature.getProperty('apkaime');
@@ -76,8 +84,7 @@ class Map extends React.Component {
           options={{ styles }}
           onGoogleApiLoaded={({ map }) => handleApiLoaded(map)}
           yesIWantToUseGoogleMapApiInternals={true}
-        >
-        </GoogleMapReact>
+        />
       </div>
     );
   }

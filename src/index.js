@@ -1,6 +1,6 @@
 import 'core-js';
 
-import ApolloClient from "apollo-boost";
+import ApolloClient from 'apollo-boost';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ReactDOM from 'react-dom';
@@ -16,7 +16,7 @@ import { resolvers } from './apollo/Resolvers';
 const bugsnagClient = window.bugsnagClient;
 
 const client = new ApolloClient({
-  uri: "https://api.brokalys.com",
+  uri: 'https://api.brokalys.com',
   clientState: {
     resolvers,
     defaults: {

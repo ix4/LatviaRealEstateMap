@@ -17,11 +17,11 @@ import { SET_SELECTED_DATES } from '../apollo/Mutation';
 import 'react-table/react-table.css';
 
 function random(low, high) {
-  return Math.random() * (high - low) + low
+  return Math.random() * (high - low) + low;
 }
 
 class SideMenu extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -29,7 +29,66 @@ class SideMenu extends React.Component {
       type: 'sell',
     };
 
-    const regions = ['Āgenskalns', 'Atgāzene', 'Avoti', 'Beberbeķi', 'Berģi', 'Bieriņi', 'Bišumuiža', 'Bolderāja', 'Brasa', 'Brekši', 'Bukulti', 'Buļļi', 'Centrs', 'Čiekurkalns', 'Daugavgrīva', 'Dreiliņi', 'Dzirciems', 'Dārzciems', 'Dārziņi', 'Grīziņkalns', 'Imanta', 'Iļģuciems', 'Jaunciems', 'Jugla', 'Katlakalns', 'Kleisti', 'Kundziņsala', 'Ķengarags', 'Ķīpsala', 'Mangaļsala', 'Maskavas forstate', 'Mežaparks', 'Mežciems', 'Mīlgrāvis', 'Mūkupurvs', 'Pleskodāle', 'Purvciems', 'Pētersala-Andrejsala', 'Pļavnieki', 'Rumbula', 'Salas', 'Sarkandaugava', 'Skanste', 'Šķirotava', 'Spilve', 'Suži', 'Šampēteris', 'Teika', 'Torņakalns', 'Trīsciems', 'Vecdaugava', 'Vecmilgrāvis', 'Vecpilsēta', 'Vecāķi', 'Voleri', 'Zasulauks', 'Ziepniekkalns', 'Zolitūde'];
+    const regions = [
+      'Āgenskalns',
+      'Atgāzene',
+      'Avoti',
+      'Beberbeķi',
+      'Berģi',
+      'Bieriņi',
+      'Bišumuiža',
+      'Bolderāja',
+      'Brasa',
+      'Brekši',
+      'Bukulti',
+      'Buļļi',
+      'Centrs',
+      'Čiekurkalns',
+      'Daugavgrīva',
+      'Dreiliņi',
+      'Dzirciems',
+      'Dārzciems',
+      'Dārziņi',
+      'Grīziņkalns',
+      'Imanta',
+      'Iļģuciems',
+      'Jaunciems',
+      'Jugla',
+      'Katlakalns',
+      'Kleisti',
+      'Kundziņsala',
+      'Ķengarags',
+      'Ķīpsala',
+      'Mangaļsala',
+      'Maskavas forstate',
+      'Mežaparks',
+      'Mežciems',
+      'Mīlgrāvis',
+      'Mūkupurvs',
+      'Pleskodāle',
+      'Purvciems',
+      'Pētersala-Andrejsala',
+      'Pļavnieki',
+      'Rumbula',
+      'Salas',
+      'Sarkandaugava',
+      'Skanste',
+      'Šķirotava',
+      'Spilve',
+      'Suži',
+      'Šampēteris',
+      'Teika',
+      'Torņakalns',
+      'Trīsciems',
+      'Vecdaugava',
+      'Vecmilgrāvis',
+      'Vecpilsēta',
+      'Vecāķi',
+      'Voleri',
+      'Zasulauks',
+      'Ziepniekkalns',
+      'Zolitūde',
+    ];
 
     this.regions = regions.map((region) => ({
       name: region,
@@ -47,7 +106,7 @@ class SideMenu extends React.Component {
         start_date: event.target.value,
         end_date: '2018-02-01',
       },
-    })
+    });
   }
 
   render() {
@@ -71,20 +130,34 @@ class SideMenu extends React.Component {
       },
       {
         Header: 'YoY change',
-        columns: [{
-          Header: 'Price',
-          headerClassName: 'text-right',
-          accessor: 'priceChange',
-          className: 'text-right',
-          Cell: (props) => <span className={props.value > 0 ? "text-success": "text-danger"}>{props.value > 0 ? `+${props.value}` : props.value}%</span>
-        },
-        {
-          Header: 'BtR ratio',
-          headerClassName: 'text-right',
-          accessor: 'btrRatioChange',
-          className: 'text-right',
-          Cell: (props) => <span className={props.value > 0 ? "text-success": "text-danger"}>{props.value > 0 ? `+${props.value}` : props.value}%</span>
-        }],
+        columns: [
+          {
+            Header: 'Price',
+            headerClassName: 'text-right',
+            accessor: 'priceChange',
+            className: 'text-right',
+            Cell: (props) => (
+              <span
+                className={props.value > 0 ? 'text-success' : 'text-danger'}
+              >
+                {props.value > 0 ? `+${props.value}` : props.value}%
+              </span>
+            ),
+          },
+          {
+            Header: 'BtR ratio',
+            headerClassName: 'text-right',
+            accessor: 'btrRatioChange',
+            className: 'text-right',
+            Cell: (props) => (
+              <span
+                className={props.value > 0 ? 'text-success' : 'text-danger'}
+              >
+                {props.value > 0 ? `+${props.value}` : props.value}%
+              </span>
+            ),
+          },
+        ],
       },
     ];
 
@@ -107,10 +180,17 @@ class SideMenu extends React.Component {
 
             <Col sm={6}>
               <Mutation mutation={SET_SELECTED_DATES}>
-                {setSelectedDate => (
+                {(setSelectedDate) => (
                   <FormGroup>
                     <Label for="exampleSelect">Selected Month</Label>
-                    <Input type="select" name="select" id="exampleSelect" onChange={(event) => this.handleChange(event, setSelectedDate)}>
+                    <Input
+                      type="select"
+                      name="select"
+                      id="exampleSelect"
+                      onChange={(event) =>
+                        this.handleChange(event, setSelectedDate)
+                      }
+                    >
                       <option value="2018-01-20">November 2018</option>
                       <option value="2018-01-10">December 2018</option>
                     </Input>
@@ -128,9 +208,10 @@ class SideMenu extends React.Component {
               columns={columns}
               showPagination={false}
               style={{
-                height: "45vh"
+                height: '45vh',
               }}
-              showPageSizeOptions={false} />
+              showPageSizeOptions={false}
+            />
           </CardBody>
         </Card>
       </div>

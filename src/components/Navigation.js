@@ -17,7 +17,7 @@ class Navigation extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
 
@@ -31,31 +31,35 @@ class Navigation extends React.Component {
     return (
       <Navbar light expand="md">
         <NavbarBrand href="/">
-          <img src="/favicon.png" width="25" height="25" alt="Brokalys" className="mr-2" />
+          <img
+            src="/favicon.png"
+            width="25"
+            height="25"
+            alt="Brokalys"
+            className="mr-2"
+          />
           Brokalys
         </NavbarBrand>
 
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
-
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                <span className="flag-icon flag-icon-lv"></span>
+                <span className="flag-icon flag-icon-lv" />
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <span className="flag-icon flag-icon-lv"></span> Latviski
+                  <span className="flag-icon flag-icon-lv" /> Latviski
                 </DropdownItem>
                 <DropdownItem>
-                  <span className="flag-icon flag-icon-gb"></span> English
+                  <span className="flag-icon flag-icon-gb" /> English
                 </DropdownItem>
                 <DropdownItem>
-                  <span className="flag-icon flag-icon-ru"></span> Ruski
+                  <span className="flag-icon flag-icon-ru" /> Ruski
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-
           </Nav>
         </Collapse>
       </Navbar>

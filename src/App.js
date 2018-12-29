@@ -12,7 +12,6 @@ progress.configure({
 });
 
 class App extends React.Component {
-
   render() {
     return (
       <Query query={GET_LOCAL_STATE}>
@@ -25,18 +24,16 @@ class App extends React.Component {
                 progress.done();
               }
 
-              if (!Object.keys(data).length && loading) return <p>Loading...</p>;
+              if (!Object.keys(data).length && loading)
+                return <p>Loading...</p>;
 
-              return (
-                <Home data={data} />
-              );
+              return <Home data={data} />;
             }}
           </Query>
         )}
       </Query>
     );
   }
-
 }
 
 export default App;
