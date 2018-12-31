@@ -12,11 +12,12 @@ import registerServiceWorker from './registerServiceWorker';
 import mockMapGeojson from './geojson.json';
 import { resolvers } from './apollo/Resolvers';
 
+import tableData from './tabledata.mock';
+
 const bugsnagClient = window.bugsnagClient;
 
 const client = new ApolloClient({
   uri: 'https://api.brokalys.com',
-  connectToDevTools: true, // @todo: disable for prod
   clientState: {
     resolvers,
     defaults: {
@@ -97,6 +98,8 @@ const client = new ApolloClient({
         __typename: 'Object',
         geojson: JSON.stringify(mockMapGeojson),
       },
+
+      getTableData: tableData,
     },
   },
 });

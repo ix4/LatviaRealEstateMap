@@ -7,6 +7,14 @@ export const resolvers = {
           end_date: variables.end_date,
         },
       });
+      return null;
+    },
+
+    setSelectedCategory: (_, { category }, { cache }) => {
+      cache.writeData({
+        data: { category },
+      });
+      return null;
     },
   },
 };

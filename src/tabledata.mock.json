@@ -1,0 +1,524 @@
+[
+  {
+    "__typename": "Object",
+    "name": "Āgenskalns",
+    "priceChange": "-4.61",
+    "btrRatioChange": "4.96",
+    "price": "1690.34",
+    "btrRatio": "0.01",
+    "median": "15.06"
+  },
+  {
+    "__typename": "Object",
+    "name": "Atgāzene",
+    "priceChange": "7.08",
+    "btrRatioChange": "-0.02",
+    "price": "966.72",
+    "btrRatio": "0.08",
+    "median": "92.02"
+  },
+  {
+    "__typename": "Object",
+    "name": "Avoti",
+    "priceChange": "-9.25",
+    "btrRatioChange": "-0.77",
+    "price": "977.29",
+    "btrRatio": "0.05",
+    "median": "96.12"
+  },
+  {
+    "__typename": "Object",
+    "name": "Beberbeķi",
+    "priceChange": "-5.85",
+    "btrRatioChange": "-2.30",
+    "price": "870.54",
+    "btrRatio": "0.04",
+    "median": "39.96"
+  },
+  {
+    "__typename": "Object",
+    "name": "Berģi",
+    "priceChange": "-9.75",
+    "btrRatioChange": "7.53",
+    "price": "1977.68",
+    "btrRatio": "0.07",
+    "median": "12.96"
+  },
+  {
+    "__typename": "Object",
+    "name": "Bieriņi",
+    "priceChange": "-8.90",
+    "btrRatioChange": "-1.98",
+    "price": "782.14",
+    "btrRatio": "0.03",
+    "median": "65.75"
+  },
+  {
+    "__typename": "Object",
+    "name": "Bišumuiža",
+    "priceChange": "-9.91",
+    "btrRatioChange": "-1.20",
+    "price": "1136.78",
+    "btrRatio": "0.05",
+    "median": "88.20"
+  },
+  {
+    "__typename": "Object",
+    "name": "Bolderāja",
+    "priceChange": "3.96",
+    "btrRatioChange": "0.69",
+    "price": "714.52",
+    "btrRatio": "0.08",
+    "median": "51.25"
+  },
+  {
+    "__typename": "Object",
+    "name": "Brasa",
+    "priceChange": "-1.63",
+    "btrRatioChange": "9.72",
+    "price": "834.96",
+    "btrRatio": "0.10",
+    "median": "33.35"
+  },
+  {
+    "__typename": "Object",
+    "name": "Brekši",
+    "priceChange": "5.30",
+    "btrRatioChange": "-0.82",
+    "price": "756.24",
+    "btrRatio": "0.07",
+    "median": "15.47"
+  },
+  {
+    "__typename": "Object",
+    "name": "Bukulti",
+    "priceChange": "8.08",
+    "btrRatioChange": "9.89",
+    "price": "735.19",
+    "btrRatio": "0.05",
+    "median": "36.71"
+  },
+  {
+    "__typename": "Object",
+    "name": "Buļļi",
+    "priceChange": "-2.54",
+    "btrRatioChange": "8.07",
+    "price": "1404.54",
+    "btrRatio": "0.07",
+    "median": "34.40"
+  },
+  {
+    "__typename": "Object",
+    "name": "Centrs",
+    "priceChange": "-6.51",
+    "btrRatioChange": "9.54",
+    "price": "1722.35",
+    "btrRatio": "0.10",
+    "median": "88.37"
+  },
+  {
+    "__typename": "Object",
+    "name": "Čiekurkalns",
+    "priceChange": "-5.20",
+    "btrRatioChange": "-5.82",
+    "price": "1847.08",
+    "btrRatio": "0.08",
+    "median": "89.47"
+  },
+  {
+    "__typename": "Object",
+    "name": "Daugavgrīva",
+    "priceChange": "0.02",
+    "btrRatioChange": "6.39",
+    "price": "619.66",
+    "btrRatio": "0.09",
+    "median": "40.70"
+  },
+  {
+    "__typename": "Object",
+    "name": "Dreiliņi",
+    "priceChange": "9.57",
+    "btrRatioChange": "-8.58",
+    "price": "788.88",
+    "btrRatio": "0.08",
+    "median": "14.76"
+  },
+  {
+    "__typename": "Object",
+    "name": "Dzirciems",
+    "priceChange": "-1.70",
+    "btrRatioChange": "5.64",
+    "price": "964.73",
+    "btrRatio": "0.02",
+    "median": "70.12"
+  },
+  {
+    "__typename": "Object",
+    "name": "Dārzciems",
+    "priceChange": "-6.86",
+    "btrRatioChange": "4.96",
+    "price": "974.21",
+    "btrRatio": "0.09",
+    "median": "71.44"
+  },
+  {
+    "__typename": "Object",
+    "name": "Dārziņi",
+    "priceChange": "5.35",
+    "btrRatioChange": "-8.60",
+    "price": "1928.84",
+    "btrRatio": "0.02",
+    "median": "90.80"
+  },
+  {
+    "__typename": "Object",
+    "name": "Grīziņkalns",
+    "priceChange": "0.36",
+    "btrRatioChange": "2.72",
+    "price": "1796.45",
+    "btrRatio": "0.07",
+    "median": "9.92"
+  },
+  {
+    "__typename": "Object",
+    "name": "Imanta",
+    "priceChange": "2.59",
+    "btrRatioChange": "0.31",
+    "price": "1682.77",
+    "btrRatio": "0.03",
+    "median": "27.97"
+  },
+  {
+    "__typename": "Object",
+    "name": "Iļģuciems",
+    "priceChange": "-6.75",
+    "btrRatioChange": "1.92",
+    "price": "773.27",
+    "btrRatio": "0.04",
+    "median": "29.74"
+  },
+  {
+    "__typename": "Object",
+    "name": "Jaunciems",
+    "priceChange": "9.00",
+    "btrRatioChange": "5.03",
+    "price": "1798.46",
+    "btrRatio": "0.10",
+    "median": "24.09"
+  },
+  {
+    "__typename": "Object",
+    "name": "Jugla",
+    "priceChange": "-1.14",
+    "btrRatioChange": "5.67",
+    "price": "1322.95",
+    "btrRatio": "0.07",
+    "median": "94.12"
+  },
+  {
+    "__typename": "Object",
+    "name": "Katlakalns",
+    "priceChange": "-6.51",
+    "btrRatioChange": "8.96",
+    "price": "662.43",
+    "btrRatio": "0.03",
+    "median": "88.86"
+  },
+  {
+    "__typename": "Object",
+    "name": "Kleisti",
+    "priceChange": "-5.98",
+    "btrRatioChange": "-8.55",
+    "price": "1660.56",
+    "btrRatio": "0.04",
+    "median": "24.27"
+  },
+  {
+    "__typename": "Object",
+    "name": "Kundziņsala",
+    "priceChange": "4.47",
+    "btrRatioChange": "-8.33",
+    "price": "1892.40",
+    "btrRatio": "0.06",
+    "median": "58.28"
+  },
+  {
+    "__typename": "Object",
+    "name": "Ķengarags",
+    "priceChange": "3.61",
+    "btrRatioChange": "4.74",
+    "price": "1687.12",
+    "btrRatio": "0.01",
+    "median": "3.91"
+  },
+  {
+    "__typename": "Object",
+    "name": "Ķīpsala",
+    "priceChange": "-9.25",
+    "btrRatioChange": "-0.80",
+    "price": "511.88",
+    "btrRatio": "0.07",
+    "median": "56.59"
+  },
+  {
+    "__typename": "Object",
+    "name": "Mangaļsala",
+    "priceChange": "-3.03",
+    "btrRatioChange": "1.58",
+    "price": "807.32",
+    "btrRatio": "0.04",
+    "median": "99.70"
+  },
+  {
+    "__typename": "Object",
+    "name": "Maskavas forstate",
+    "priceChange": "0.96",
+    "btrRatioChange": "-9.65",
+    "price": "1139.13",
+    "btrRatio": "0.08",
+    "median": "86.86"
+  },
+  {
+    "__typename": "Object",
+    "name": "Mežaparks",
+    "priceChange": "-3.20",
+    "btrRatioChange": "2.27",
+    "price": "1456.57",
+    "btrRatio": "0.07",
+    "median": "75.68"
+  },
+  {
+    "__typename": "Object",
+    "name": "Mežciems",
+    "priceChange": "-5.82",
+    "btrRatioChange": "7.21",
+    "price": "821.53",
+    "btrRatio": "0.09",
+    "median": "64.16"
+  },
+  {
+    "__typename": "Object",
+    "name": "Mīlgrāvis",
+    "priceChange": "-9.14",
+    "btrRatioChange": "4.27",
+    "price": "1725.99",
+    "btrRatio": "0.06",
+    "median": "90.72"
+  },
+  {
+    "__typename": "Object",
+    "name": "Mūkupurvs",
+    "priceChange": "3.23",
+    "btrRatioChange": "-0.80",
+    "price": "1406.42",
+    "btrRatio": "0.07",
+    "median": "19.92"
+  },
+  {
+    "__typename": "Object",
+    "name": "Pleskodāle",
+    "priceChange": "-0.48",
+    "btrRatioChange": "2.21",
+    "price": "1432.54",
+    "btrRatio": "0.09",
+    "median": "43.69"
+  },
+  {
+    "__typename": "Object",
+    "name": "Purvciems",
+    "priceChange": "1.13",
+    "btrRatioChange": "-2.59",
+    "price": "898.45",
+    "btrRatio": "0.01",
+    "median": "9.67"
+  },
+  {
+    "__typename": "Object",
+    "name": "Pētersala-Andrejsala",
+    "priceChange": "1.64",
+    "btrRatioChange": "9.67",
+    "price": "1800.12",
+    "btrRatio": "0.07",
+    "median": "77.24"
+  },
+  {
+    "__typename": "Object",
+    "name": "Pļavnieki",
+    "priceChange": "-2.70",
+    "btrRatioChange": "2.80",
+    "price": "1380.30",
+    "btrRatio": "0.05",
+    "median": "25.36"
+  },
+  {
+    "__typename": "Object",
+    "name": "Rumbula",
+    "priceChange": "5.89",
+    "btrRatioChange": "9.07",
+    "price": "1110.52",
+    "btrRatio": "0.08",
+    "median": "62.31"
+  },
+  {
+    "__typename": "Object",
+    "name": "Salas",
+    "priceChange": "7.84",
+    "btrRatioChange": "-7.42",
+    "price": "1892.12",
+    "btrRatio": "0.10",
+    "median": "41.71"
+  },
+  {
+    "__typename": "Object",
+    "name": "Sarkandaugava",
+    "priceChange": "-4.54",
+    "btrRatioChange": "-5.01",
+    "price": "1637.01",
+    "btrRatio": "0.08",
+    "median": "45.08"
+  },
+  {
+    "__typename": "Object",
+    "name": "Skanste",
+    "priceChange": "-9.43",
+    "btrRatioChange": "-3.23",
+    "price": "1310.54",
+    "btrRatio": "0.03",
+    "median": "45.06"
+  },
+  {
+    "__typename": "Object",
+    "name": "Šķirotava",
+    "priceChange": "-6.61",
+    "btrRatioChange": "-5.62",
+    "price": "957.30",
+    "btrRatio": "0.07",
+    "median": "2.14"
+  },
+  {
+    "__typename": "Object",
+    "name": "Spilve",
+    "priceChange": "2.81",
+    "btrRatioChange": "-0.13",
+    "price": "1130.32",
+    "btrRatio": "0.10",
+    "median": "13.83"
+  },
+  {
+    "__typename": "Object",
+    "name": "Suži",
+    "priceChange": "0.78",
+    "btrRatioChange": "-4.21",
+    "price": "1863.83",
+    "btrRatio": "0.02",
+    "median": "57.22"
+  },
+  {
+    "__typename": "Object",
+    "name": "Šampēteris",
+    "priceChange": "-9.87",
+    "btrRatioChange": "5.90",
+    "price": "1343.73",
+    "btrRatio": "0.03",
+    "median": "68.48"
+  },
+  {
+    "__typename": "Object",
+    "name": "Teika",
+    "priceChange": "3.38",
+    "btrRatioChange": "-3.40",
+    "price": "1498.41",
+    "btrRatio": "0.03",
+    "median": "19.11"
+  },
+  {
+    "__typename": "Object",
+    "name": "Torņakalns",
+    "priceChange": "4.54",
+    "btrRatioChange": "1.16",
+    "price": "781.33",
+    "btrRatio": "0.09",
+    "median": "21.35"
+  },
+  {
+    "__typename": "Object",
+    "name": "Trīsciems",
+    "priceChange": "-7.22",
+    "btrRatioChange": "-0.07",
+    "price": "1230.84",
+    "btrRatio": "0.06",
+    "median": "23.04"
+  },
+  {
+    "__typename": "Object",
+    "name": "Vecdaugava",
+    "priceChange": "-0.72",
+    "btrRatioChange": "-8.24",
+    "price": "1395.06",
+    "btrRatio": "0.10",
+    "median": "49.62"
+  },
+  {
+    "__typename": "Object",
+    "name": "Vecmilgrāvis",
+    "priceChange": "-7.08",
+    "btrRatioChange": "-3.90",
+    "price": "1480.59",
+    "btrRatio": "0.08",
+    "median": "26.38"
+  },
+  {
+    "__typename": "Object",
+    "name": "Vecpilsēta",
+    "priceChange": "4.14",
+    "btrRatioChange": "8.40",
+    "price": "1788.76",
+    "btrRatio": "0.02",
+    "median": "11.31"
+  },
+  {
+    "__typename": "Object",
+    "name": "Vecāķi",
+    "priceChange": "-5.53",
+    "btrRatioChange": "7.93",
+    "price": "608.20",
+    "btrRatio": "0.06",
+    "median": "86.54"
+  },
+  {
+    "__typename": "Object",
+    "name": "Voleri",
+    "priceChange": "1.27",
+    "btrRatioChange": "7.87",
+    "price": "1468.60",
+    "btrRatio": "0.04",
+    "median": "87.32"
+  },
+  {
+    "__typename": "Object",
+    "name": "Zasulauks",
+    "priceChange": "-5.89",
+    "btrRatioChange": "-5.75",
+    "price": "1324.92",
+    "btrRatio": "0.04",
+    "median": "86.73"
+  },
+  {
+    "__typename": "Object",
+    "name": "Ziepniekkalns",
+    "priceChange": "-9.90",
+    "btrRatioChange": "3.18",
+    "price": "1676.71",
+    "btrRatio": "0.10",
+    "median": "91.11"
+  },
+  {
+    "__typename": "Object",
+    "name": "Zolitūde",
+    "priceChange": "-5.15",
+    "btrRatioChange": "4.45",
+    "price": "1448.90",
+    "btrRatio": "0.03",
+    "median": "59.59"
+  }
+]

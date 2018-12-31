@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mutation } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import ReactTable from 'react-table';
 import {
   Card,
@@ -11,213 +11,181 @@ import {
   Label,
   Row,
 } from 'reactstrap';
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 
-import { SET_SELECTED_DATES } from '../apollo/Mutation';
+import { SET_SELECTED_DATES, SET_SELECTED_CATEGORY } from '../apollo/Mutation';
+import { GET_LOCAL_STATE, GET_TABLE_DATA } from '../apollo/Query';
+import { QueryWithGlobalVariables } from '../components/QueryWithGlobalVariables';
 
 import 'react-table/react-table.css';
 
-function random(low, high) {
-  return Math.random() * (high - low) + low;
-}
+const moment = extendMoment(Moment);
+
+const start = new Date(2018, 0, 1);
+const end = moment().subtract(1, 'month');
+const range = moment.range(start, end);
 
 export class SideMenu extends React.Component {
-  constructor(props) {
-    super(props);
+  columns = [
+    {
+      Header: 'Region',
+      headerClassName: 'text-left',
+      columns: [
+        {
+          Header: 'Name',
+          headerClassName: 'text-left',
+          accessor: 'name',
+        },
+        {
+          Header: 'Median Price',
+          headerClassName: 'text-right',
+          accessor: 'price',
+          className: 'text-right',
+        },
+        {
+          Header: 'BtR ratio',
+          headerClassName: 'text-right',
+          accessor: 'btrRatio',
+          className: 'text-right',
+        },
+      ],
+    },
+    {
+      Header: 'YoY change',
+      columns: [
+        {
+          Header: 'Price',
+          headerClassName: 'text-right',
+          accessor: 'priceChange',
+          className: 'text-right',
+          Cell: (props) => (
+            <span className={props.value > 0 ? 'text-success' : 'text-danger'}>
+              {props.value > 0 ? `+${props.value}` : props.value}%
+            </span>
+          ),
+        },
+        {
+          Header: 'BtR ratio',
+          headerClassName: 'text-right',
+          accessor: 'btrRatioChange',
+          className: 'text-right',
+          Cell: (props) => (
+            <span className={props.value > 0 ? 'text-success' : 'text-danger'}>
+              {props.value > 0 ? `+${props.value}` : props.value}%
+            </span>
+          ),
+        },
+      ],
+    },
+  ];
 
-    this.state = {
-      category: 'apartment',
-      type: 'sell',
-    };
+  handleInputChange(
+    {
+      target: { name, value },
+    },
+    runGraphQLMutation,
+  ) {
+    const variables = {};
 
-    const regions = [
-      'Āgenskalns',
-      'Atgāzene',
-      'Avoti',
-      'Beberbeķi',
-      'Berģi',
-      'Bieriņi',
-      'Bišumuiža',
-      'Bolderāja',
-      'Brasa',
-      'Brekši',
-      'Bukulti',
-      'Buļļi',
-      'Centrs',
-      'Čiekurkalns',
-      'Daugavgrīva',
-      'Dreiliņi',
-      'Dzirciems',
-      'Dārzciems',
-      'Dārziņi',
-      'Grīziņkalns',
-      'Imanta',
-      'Iļģuciems',
-      'Jaunciems',
-      'Jugla',
-      'Katlakalns',
-      'Kleisti',
-      'Kundziņsala',
-      'Ķengarags',
-      'Ķīpsala',
-      'Mangaļsala',
-      'Maskavas forstate',
-      'Mežaparks',
-      'Mežciems',
-      'Mīlgrāvis',
-      'Mūkupurvs',
-      'Pleskodāle',
-      'Purvciems',
-      'Pētersala-Andrejsala',
-      'Pļavnieki',
-      'Rumbula',
-      'Salas',
-      'Sarkandaugava',
-      'Skanste',
-      'Šķirotava',
-      'Spilve',
-      'Suži',
-      'Šampēteris',
-      'Teika',
-      'Torņakalns',
-      'Trīsciems',
-      'Vecdaugava',
-      'Vecmilgrāvis',
-      'Vecpilsēta',
-      'Vecāķi',
-      'Voleri',
-      'Zasulauks',
-      'Ziepniekkalns',
-      'Zolitūde',
-    ];
+    switch (name) {
+      case 'start_date':
+        variables[name] = value;
+        variables['end_date'] = moment(value)
+          .add(1, 'month')
+          .format('YYYY-MM-DD');
+        break;
 
-    this.regions = regions.map((region) => ({
-      name: region,
-      priceChange: random(-10, 10).toFixed(2),
-      btrRatioChange: random(-10, 10).toFixed(2),
-      price: random(500, 2000).toFixed(2),
-      btrRatio: (random(1, 10) / 100).toFixed(2),
-      median: random(0, 100).toFixed(2),
-    }));
-  }
+      default:
+        variables[name] = value;
+        break;
+    }
 
-  handleChange(event, setSelectedDate) {
-    setSelectedDate({
-      variables: {
-        start_date: event.target.value,
-        end_date: '2018-02-01',
-      },
-    });
+    runGraphQLMutation({ variables });
   }
 
   render() {
-    const columns = [
-      {
-        Header: 'Region',
-        headerClassName: 'text-left',
-        columns: [
-          {
-            Header: 'Name',
-            headerClassName: 'text-left',
-            accessor: 'name',
-          },
-          {
-            Header: 'Median Price',
-            headerClassName: 'text-right',
-            accessor: 'price',
-            className: 'text-right',
-          },
-          {
-            Header: 'BtR ratio',
-            headerClassName: 'text-right',
-            accessor: 'btrRatio',
-            className: 'text-right',
-          },
-        ],
-      },
-      {
-        Header: 'YoY change',
-        columns: [
-          {
-            Header: 'Price',
-            headerClassName: 'text-right',
-            accessor: 'priceChange',
-            className: 'text-right',
-            Cell: (props) => (
-              <span
-                className={props.value > 0 ? 'text-success' : 'text-danger'}
-              >
-                {props.value > 0 ? `+${props.value}` : props.value}%
-              </span>
-            ),
-          },
-          {
-            Header: 'BtR ratio',
-            headerClassName: 'text-right',
-            accessor: 'btrRatioChange',
-            className: 'text-right',
-            Cell: (props) => (
-              <span
-                className={props.value > 0 ? 'text-success' : 'text-danger'}
-              >
-                {props.value > 0 ? `+${props.value}` : props.value}%
-              </span>
-            ),
-          },
-        ],
-      },
-    ];
-
     return (
       <div>
-        <Form>
-          <Row form>
-            <Col sm={6}>
-              <FormGroup>
-                <Label for="exampleSelect">Property Type</Label>
-                <Input type="select" name="select" id="exampleSelect">
-                  <option>Apartment</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </Input>
-              </FormGroup>
-            </Col>
+        <Query query={GET_LOCAL_STATE}>
+          {({ data }) => (
+            <Form>
+              <Row form>
+                <Col sm={6}>
+                  <Mutation mutation={SET_SELECTED_CATEGORY}>
+                    {(setSelectedCategory) => (
+                      <FormGroup>
+                        <Label for="fieldCategory">Property Type</Label>
+                        <Input
+                          type="select"
+                          name="category"
+                          id="fieldCategory"
+                          value={data.category}
+                          onChange={(event) =>
+                            this.handleInputChange(event, setSelectedCategory)
+                          }
+                        >
+                          <option value="APARTMENT">Apartment</option>
+                          <option value="HOUSE">House</option>
+                          {/*<option value="LAND">Land</option>*/}
+                        </Input>
+                      </FormGroup>
+                    )}
+                  </Mutation>
+                </Col>
 
-            <Col sm={6}>
-              <Mutation mutation={SET_SELECTED_DATES}>
-                {(setSelectedDate) => (
-                  <FormGroup>
-                    <Label for="exampleSelect">Selected Month</Label>
-                    <Input
-                      type="select"
-                      name="select"
-                      id="exampleSelect"
-                      onChange={(event) =>
-                        this.handleChange(event, setSelectedDate)
-                      }
-                    >
-                      <option value="2018-01-20">November 2018</option>
-                      <option value="2018-01-10">December 2018</option>
-                    </Input>
-                  </FormGroup>
-                )}
-              </Mutation>
-            </Col>
-          </Row>
-        </Form>
+                <Col sm={6}>
+                  <Mutation mutation={SET_SELECTED_DATES}>
+                    {(setSelectedDate) => (
+                      <FormGroup>
+                        <Label for="fieldSelectedMonth">Selected Month</Label>
+                        <Input
+                          type="select"
+                          name="start_date"
+                          id="fieldSelectedMonth"
+                          value={data.start_date}
+                          onChange={(event) =>
+                            this.handleInputChange(event, setSelectedDate)
+                          }
+                        >
+                          {Array.from(range.by('month'))
+                            .map((row) => row.format('YYYY-MM-DD'))
+                            .map((row) => (
+                              <option key={row} value={row}>
+                                {row}
+                              </option>
+                            ))}
+                        </Input>
+                      </FormGroup>
+                    )}
+                  </Mutation>
+                </Col>
+              </Row>
+            </Form>
+          )}
+        </Query>
 
         <Card>
           <CardBody>
-            <ReactTable
-              data={this.regions}
-              columns={columns}
-              showPagination={false}
-              style={{
-                height: '45vh',
-              }}
-              showPageSizeOptions={false}
-            />
+            <QueryWithGlobalVariables query={GET_TABLE_DATA}>
+              {({ data: { getTableData } }) => (
+                <ReactTable
+                  data={getTableData}
+                  columns={this.columns}
+                  showPagination={false}
+                  defaultPageSize={getTableData.length}
+                  defaultSorted={[
+                    {
+                      id: 'name',
+                      desc: false,
+                    },
+                  ]}
+                  style={{
+                    height: '45vh',
+                  }}
+                />
+              )}
+            </QueryWithGlobalVariables>
           </CardBody>
         </Card>
       </div>

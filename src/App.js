@@ -24,9 +24,9 @@ export class App extends React.Component {
 
           if (error)
             return (
-              <p>
+              <div>
                 Error: <pre>{JSON.stringify(error, null, 2)}</pre>
-              </p>
+              </div>
             );
 
           if (!Object.keys(data).length && loading) return <p>Loading...</p>;

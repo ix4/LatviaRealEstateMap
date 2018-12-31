@@ -27,6 +27,23 @@ export const GET_REGION_TABLE_DATA = gql`
   }
 `;
 
+export const GET_TABLE_DATA = gql`
+  query GetTableData(
+    $category: Category
+    $start_date: Date!
+    $end_date: Date!
+  ) {
+    getTableData @client {
+      name
+      priceChange
+      btrRatioChange
+      price
+      btrRatio
+      median
+    }
+  }
+`;
+
 export const GET_CHART_DATA = gql`
   query GetChartData {
     getChartData @client {

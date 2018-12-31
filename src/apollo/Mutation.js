@@ -5,3 +5,9 @@ export const SET_SELECTED_DATES = gql`
     setSelectedDates(start_date: $start_date, end_date: $end_date) @client
   }
 `;
+
+export const SET_SELECTED_CATEGORY = gql`
+  mutation SetSelectedCategory($category: Category!) {
+    setSelectedCategory(category: $category) @client
+  }
+`;
