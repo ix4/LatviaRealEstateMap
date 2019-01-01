@@ -1,4 +1,5 @@
 import React from 'react';
+import { withNamespaces } from 'react-i18next';
 import {
   Bar,
   ComposedChart,
@@ -10,10 +11,12 @@ import {
 } from 'recharts';
 
 import { GET_CHART_DATA } from '../apollo/Query';
-import { QueryWithGlobalVariables } from '../components/QueryWithGlobalVariables';
+import QueryWithGlobalVariables from '../components/QueryWithGlobalVariables';
 
-export class Chart extends React.Component {
+class Chart extends React.Component {
   render() {
+    const { t } = this.props;
+
     return (
       <QueryWithGlobalVariables query={GET_CHART_DATA}>
         {({ data: { getChartData: data } }) => (
@@ -22,9 +25,9 @@ export class Chart extends React.Component {
               <Line
                 type="monotone"
                 dataKey="pricePerSqm"
-                name="Price per sqm"
+                name={t('chart.price')}
               />
-              <Bar dataKey="count" fill="#413ea0" name="Classified count" />
+              <Bar dataKey="count" fill="#413ea0" name={t('chart.count')} />
               <XAxis dataKey="date" />
               <YAxis />
               <Tooltip />
@@ -35,3 +38,5 @@ export class Chart extends React.Component {
     );
   }
 }
+
+export default withNamespaces()(Chart);

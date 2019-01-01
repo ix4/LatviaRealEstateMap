@@ -1,0 +1,44 @@
+{
+  "loading": "Loading...",
+
+  "form": {
+    "category": {
+      "label": "Property Type",
+      "values": {
+        "APARTMENT": "Apartment",
+        "HOUSE": "House",
+        "LAND": "Land"
+      }
+    },
+    "start_date": {
+      "label": "Selected Month"
+    }
+  },
+
+  "table": {
+    "columns": {
+      "region": {
+        "header": "Region",
+        "name": "Name",
+        "price": "Median Price",
+        "btr_ratio": "BtR ratio"
+      },
+      "yoy_change": {
+        "header": "YoY Change",
+        "price": "Price",
+        "btr_ratio": "BtR ratio"
+      }
+    }
+  },
+
+  "chart": {
+    "price": "Price per sqm",
+    "count": "Classified Count"
+  },
+
+  "newsletter": {
+    "title": "Newsletter",
+    "body": "Want to receive notifications about Brokalys platform updates to your email?",
+    "button": "Sign Up"
+  }
+}

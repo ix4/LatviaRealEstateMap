@@ -1,13 +1,13 @@
 import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 
-import { Chart } from '../components/Chart';
-import { Map } from '../components/Map';
-import { Navigation } from '../components/Navigation';
-import { NewsletterSignup } from '../components/NewsletterSignup';
-import { SideMenu } from '../components/SideMenu';
+import Chart from '../components/Chart';
+import Map from '../components/Map';
+import Navigation from '../components/Navigation';
+import NewsletterSignup from '../components/NewsletterSignup';
+import SideMenu from '../components/SideMenu';
 
-export class Home extends React.Component {
+class Home extends React.Component {
   render() {
     const regions = this.props.data.getRegions;
     console.log(regions ? JSON.stringify(regions[0]) : null);
@@ -45,3 +45,5 @@ export class Home extends React.Component {
     );
   }
 }
+
+export default Home;

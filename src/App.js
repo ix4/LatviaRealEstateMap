@@ -1,9 +1,10 @@
 import React from 'react';
+import { withNamespaces } from 'react-i18next';
 import progress from 'nprogress';
 
 import { GET_REGION_TABLE_DATA } from './apollo/Query';
-import { Home } from './pages/Home';
-import { QueryWithGlobalVariables } from './components/QueryWithGlobalVariables';
+import Home from './pages/Home';
+import QueryWithGlobalVariables from './components/QueryWithGlobalVariables';
 
 progress.configure({
   showSpinner: false,
@@ -11,8 +12,10 @@ progress.configure({
   trickleSpeed: 150,
 });
 
-export class App extends React.Component {
+class App extends React.Component {
   render() {
+    const { t } = this.props;
+
     return (
       <QueryWithGlobalVariables query={GET_REGION_TABLE_DATA}>
         {({ loading, error, data }) => {
@@ -29,7 +32,8 @@ export class App extends React.Component {
               </div>
             );
 
-          if (!Object.keys(data).length && loading) return <p>Loading...</p>;
+          if (!Object.keys(data).length && loading)
+            return <p>{t('loading')}</p>;
 
           return <Home data={data} />;
         }}
@@ -37,3 +41,5 @@ export class App extends React.Component {
     );
   }
 }
+
+export default withNamespaces()(App);

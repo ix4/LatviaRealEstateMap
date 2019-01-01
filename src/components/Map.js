@@ -1,10 +1,10 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 
-import { QueryWithGlobalVariables } from '../components/QueryWithGlobalVariables';
+import QueryWithGlobalVariables from '../components/QueryWithGlobalVariables';
 import { GET_MAP_DATA } from '../apollo/Query';
 
-export class Map extends React.Component {
+class Map extends React.Component {
   static defaultProps = {
     center: {
       lat: 56.98,
@@ -76,3 +76,5 @@ export class Map extends React.Component {
     );
   }
 }
+
+export default Map;

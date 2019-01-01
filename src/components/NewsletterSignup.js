@@ -1,19 +1,21 @@
 import React from 'react';
+import { withNamespaces } from 'react-i18next';
 import { Button, Card, CardBody, CardText, CardTitle } from 'reactstrap';
 
-export class NewsletterSignup extends React.Component {
+class NewsletterSignup extends React.Component {
   render() {
+    const { t } = this.props;
+
     return (
       <Card color="primary">
         <CardBody>
-          <CardTitle>Newsletter</CardTitle>
-          <CardText>
-            Want to receive notifications about Brokalys platform updates to
-            your email?
-          </CardText>
-          <Button>Sign up</Button>
+          <CardTitle>{t('newsletter.title')}</CardTitle>
+          <CardText>{t('newsletter.body')}</CardText>
+          <Button>{t('newsletter.button')}</Button>
         </CardBody>
       </Card>
     );
   }
 }
+
+export default withNamespaces()(NewsletterSignup);

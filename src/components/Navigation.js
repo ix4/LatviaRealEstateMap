@@ -1,4 +1,5 @@
 import React from 'react';
+import { withNamespaces } from 'react-i18next';
 import {
   Collapse,
   DropdownItem,
@@ -11,14 +12,26 @@ import {
   UncontrolledDropdown,
 } from 'reactstrap';
 
-export class Navigation extends React.Component {
+import i18n from '../i18n';
+
+class Navigation extends React.Component {
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
+      language: i18n.language,
+      flag: i18n.language === 'en' ? 'gb' : i18n.language,
     };
+  }
+
+  changeLanguage(language) {
+    i18n.changeLanguage(language);
+    this.setState({
+      language,
+      flag: language === 'en' ? 'gb' : language,
+    });
   }
 
   toggle() {
@@ -46,16 +59,16 @@ export class Navigation extends React.Component {
           <Nav className="ml-auto" navbar>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                <span className="flag-icon flag-icon-lv" />
+                <span className={'flag-icon flag-icon-' + this.state.flag} />
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
+                <DropdownItem onClick={() => this.changeLanguage('lv')}>
                   <span className="flag-icon flag-icon-lv" /> Latviski
                 </DropdownItem>
-                <DropdownItem>
+                <DropdownItem onClick={() => this.changeLanguage('en')}>
                   <span className="flag-icon flag-icon-gb" /> English
                 </DropdownItem>
-                <DropdownItem>
+                <DropdownItem onClick={() => this.changeLanguage('ru')}>
                   <span className="flag-icon flag-icon-ru" /> Ruski
                 </DropdownItem>
               </DropdownMenu>
@@ -66,3 +79,5 @@ export class Navigation extends React.Component {
     );
   }
 }
+
+export default withNamespaces()(Navigation);

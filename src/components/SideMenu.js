@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import ReactTable from 'react-table';
+import { withNamespaces } from 'react-i18next';
 import {
   Card,
   CardBody,
@@ -16,7 +17,7 @@ import { extendMoment } from 'moment-range';
 
 import { SET_SELECTED_DATES, SET_SELECTED_CATEGORY } from '../apollo/Mutation';
 import { GET_LOCAL_STATE, GET_TABLE_DATA } from '../apollo/Query';
-import { QueryWithGlobalVariables } from '../components/QueryWithGlobalVariables';
+import QueryWithGlobalVariables from '../components/QueryWithGlobalVariables';
 
 import 'react-table/react-table.css';
 
@@ -26,60 +27,7 @@ const start = new Date(2018, 0, 1);
 const end = moment().subtract(1, 'month');
 const range = moment.range(start, end);
 
-export class SideMenu extends React.Component {
-  columns = [
-    {
-      Header: 'Region',
-      headerClassName: 'text-left',
-      columns: [
-        {
-          Header: 'Name',
-          headerClassName: 'text-left',
-          accessor: 'name',
-        },
-        {
-          Header: 'Median Price',
-          headerClassName: 'text-right',
-          accessor: 'price',
-          className: 'text-right',
-        },
-        {
-          Header: 'BtR ratio',
-          headerClassName: 'text-right',
-          accessor: 'btrRatio',
-          className: 'text-right',
-        },
-      ],
-    },
-    {
-      Header: 'YoY change',
-      columns: [
-        {
-          Header: 'Price',
-          headerClassName: 'text-right',
-          accessor: 'priceChange',
-          className: 'text-right',
-          Cell: (props) => (
-            <span className={props.value > 0 ? 'text-success' : 'text-danger'}>
-              {props.value > 0 ? `+${props.value}` : props.value}%
-            </span>
-          ),
-        },
-        {
-          Header: 'BtR ratio',
-          headerClassName: 'text-right',
-          accessor: 'btrRatioChange',
-          className: 'text-right',
-          Cell: (props) => (
-            <span className={props.value > 0 ? 'text-success' : 'text-danger'}>
-              {props.value > 0 ? `+${props.value}` : props.value}%
-            </span>
-          ),
-        },
-      ],
-    },
-  ];
-
+class SideMenu extends React.Component {
   handleInputChange(
     {
       target: { name, value },
@@ -105,6 +53,65 @@ export class SideMenu extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
+
+    const columns = [
+      {
+        Header: t('table.columns.region.header'),
+        headerClassName: 'text-left',
+        columns: [
+          {
+            Header: t('table.columns.region.name'),
+            headerClassName: 'text-left',
+            accessor: 'name',
+          },
+          {
+            Header: t('table.columns.region.price'),
+            headerClassName: 'text-right',
+            accessor: 'price',
+            className: 'text-right',
+          },
+          {
+            Header: t('table.columns.region.btr_ratio'),
+            headerClassName: 'text-right',
+            accessor: 'btrRatio',
+            className: 'text-right',
+          },
+        ],
+      },
+      {
+        Header: t('table.columns.yoy_change.header'),
+        columns: [
+          {
+            Header: t('table.columns.yoy_change.price'),
+            headerClassName: 'text-right',
+            accessor: 'priceChange',
+            className: 'text-right',
+            Cell: (props) => (
+              <span
+                className={props.value > 0 ? 'text-success' : 'text-danger'}
+              >
+                {props.value > 0 ? `+${props.value}` : props.value}%
+              </span>
+            ),
+          },
+          {
+            Header: t('table.columns.yoy_change.btr_ratio'),
+            headerClassName: 'text-right',
+            accessor: 'btrRatioChange',
+            className: 'text-right',
+            Cell: (props) => (
+              <span
+                className={props.value > 0 ? 'text-success' : 'text-danger'}
+              >
+                {props.value > 0 ? `+${props.value}` : props.value}%
+              </span>
+            ),
+          },
+        ],
+      },
+    ];
+
     return (
       <div>
         <Query query={GET_LOCAL_STATE}>
@@ -115,7 +122,9 @@ export class SideMenu extends React.Component {
                   <Mutation mutation={SET_SELECTED_CATEGORY}>
                     {(setSelectedCategory) => (
                       <FormGroup>
-                        <Label for="fieldCategory">Property Type</Label>
+                        <Label for="fieldCategory">
+                          {t('form.category.label')}
+                        </Label>
                         <Input
                           type="select"
                           name="category"
@@ -125,9 +134,13 @@ export class SideMenu extends React.Component {
                             this.handleInputChange(event, setSelectedCategory)
                           }
                         >
-                          <option value="APARTMENT">Apartment</option>
-                          <option value="HOUSE">House</option>
-                          {/*<option value="LAND">Land</option>*/}
+                          <option value="APARTMENT">
+                            {t('form.category.values.APARTMENT')}
+                          </option>
+                          <option value="HOUSE">
+                            {t('form.category.values.HOUSE')}
+                          </option>
+                          {/*<option value="LAND">{t('form.category.values.LAND')}</option>*/}
                         </Input>
                       </FormGroup>
                     )}
@@ -138,7 +151,9 @@ export class SideMenu extends React.Component {
                   <Mutation mutation={SET_SELECTED_DATES}>
                     {(setSelectedDate) => (
                       <FormGroup>
-                        <Label for="fieldSelectedMonth">Selected Month</Label>
+                        <Label for="fieldSelectedMonth">
+                          {t('form.start_date.label')}
+                        </Label>
                         <Input
                           type="select"
                           name="start_date"
@@ -171,7 +186,7 @@ export class SideMenu extends React.Component {
               {({ data: { getTableData } }) => (
                 <ReactTable
                   data={getTableData}
-                  columns={this.columns}
+                  columns={columns}
                   showPagination={false}
                   defaultPageSize={getTableData.length}
                   defaultSorted={[
@@ -192,3 +207,5 @@ export class SideMenu extends React.Component {
     );
   }
 }
+
+export default withNamespaces()(SideMenu);

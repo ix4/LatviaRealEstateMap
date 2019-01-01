@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 
 import { GET_LOCAL_STATE } from '../apollo/Query';
 
-export class QueryWithGlobalVariables extends React.Component {
+class QueryWithGlobalVariables extends React.Component {
   render() {
     return (
       <Query query={GET_LOCAL_STATE}>
@@ -16,3 +16,5 @@ export class QueryWithGlobalVariables extends React.Component {
     );
   }
 }
+
+export default QueryWithGlobalVariables;
