@@ -45,7 +45,11 @@ export const GET_TABLE_DATA = gql`
 `;
 
 export const GET_CHART_DATA = gql`
-  query GetChartData {
+  query GetChartData(
+    $category: Category
+    $start_date: Date!
+    $end_date: Date!
+  ) {
     getChartData @client {
       date
       count
@@ -55,7 +59,7 @@ export const GET_CHART_DATA = gql`
 `;
 
 export const GET_MAP_DATA = gql`
-  query GetMapData {
+  query GetMapData($category: Category, $start_date: Date!, $end_date: Date!) {
     getMapData @client {
       geojson
     }
