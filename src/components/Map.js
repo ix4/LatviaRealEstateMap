@@ -90,11 +90,7 @@ class Map extends React.Component {
     const handleApiLoaded = this.handleApiLoaded.bind(this);
     return (
       <QueryWithGlobalVariables query={GET_MAP_DATA}>
-        {({
-          data: {
-            getMapData: { geojson: data },
-          },
-        }) => (
+        {({ data: { getMapData: data } }) => (
           <div style={{ height: '100%', width: '100%' }}>
             <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GMAPS_KEY }}
@@ -105,7 +101,7 @@ class Map extends React.Component {
               yesIWantToUseGoogleMapApiInternals={true}
             >
               {this.state.map ? (
-                <MapData map={this.state.map} data={JSON.parse(data)} />
+                <MapData map={this.state.map} data={data} />
               ) : (
                 ''
               )}

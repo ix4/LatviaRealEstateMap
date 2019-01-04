@@ -96,7 +96,19 @@ const client = new ApolloClient({
 
       getMapData: {
         __typename: 'Object',
-        geojson: JSON.stringify(mockMapGeojson),
+        type: mockMapGeojson.type,
+        features: mockMapGeojson.features.map((feature) => ({
+          __typename: 'Object',
+          type: feature.type,
+          properties: {
+            __typename: 'Object',
+            ...feature.properties,
+          },
+          geometry: {
+            __typename: 'Object',
+            ...feature.geometry,
+          },
+        })),
       },
 
       getTableData: tableData,

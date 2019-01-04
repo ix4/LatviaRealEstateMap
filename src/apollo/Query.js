@@ -61,7 +61,18 @@ export const GET_CHART_DATA = gql`
 export const GET_MAP_DATA = gql`
   query GetMapData($category: Category, $start_date: Date!, $end_date: Date!) {
     getMapData @client {
-      geojson
+      type
+      features {
+        type
+        properties {
+          name
+          color
+        }
+        geometry {
+          type
+          coordinates
+        }
+      }
     }
   }
 `;
