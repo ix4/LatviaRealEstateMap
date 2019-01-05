@@ -10,6 +10,7 @@ body,
   padding: 0;
 }
 
+.chart-loader,
 .map-loader {
   position: absolute;
   z-index: 1;

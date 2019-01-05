@@ -1,4 +1,5 @@
 import React from 'react';
+import { ClipLoader } from 'react-spinners';
 import { withNamespaces } from 'react-i18next';
 import {
   Bar,
@@ -19,20 +20,30 @@ class Chart extends React.Component {
 
     return (
       <QueryWithGlobalVariables query={GET_CHART_DATA}>
-        {({ data: { getChartData: data } }) => (
-          <ResponsiveContainer width="100%" height={200}>
-            <ComposedChart data={data}>
-              <Line
-                type="monotone"
-                dataKey="pricePerSqm"
-                name={t('chart.price')}
-              />
-              <Bar dataKey="count" fill="#413ea0" name={t('chart.count')} />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-            </ComposedChart>
-          </ResponsiveContainer>
+        {({ loading, error, data }) => (
+          <div>
+            <div className="chart-loader">
+              <ClipLoader color={'#fd6c6c'} loading={loading} />
+            </div>
+
+            {data && !error ? (
+              <ResponsiveContainer width="100%" height={200}>
+                <ComposedChart data={data.getChartData}>
+                  <Line
+                    type="monotone"
+                    dataKey="pricePerSqm"
+                    name={t('chart.price')}
+                  />
+                  <Bar dataKey="count" fill="#413ea0" name={t('chart.count')} />
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Tooltip />
+                </ComposedChart>
+              </ResponsiveContainer>
+            ) : (
+              ''
+            )}
+          </div>
         )}
       </QueryWithGlobalVariables>
     );

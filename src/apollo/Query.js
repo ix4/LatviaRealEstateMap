@@ -45,15 +45,11 @@ export const GET_TABLE_DATA = gql`
 `;
 
 export const GET_CHART_DATA = gql`
-  query GetChartData(
-    $category: Category
-    $start_date: Date!
-    $end_date: Date!
-  ) {
-    getChartData @client {
+  query GetChartData($category: Category!) {
+    getChartData(category: $category) {
       date
       count
-      pricePerSqm
+      pricePerSqm: price_per_sqm
     }
   }
 `;
