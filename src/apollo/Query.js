@@ -59,8 +59,12 @@ export const GET_CHART_DATA = gql`
 `;
 
 export const GET_MAP_DATA = gql`
-  query GetMapData($category: Category, $start_date: Date!, $end_date: Date!) {
-    getMapData @client {
+  query GetMapData($category: Category!, $start_date: Date!, $end_date: Date!) {
+    getMapData(
+      category: $category
+      start_date: $start_date
+      end_date: $end_date
+    ) {
       type
       features {
         type

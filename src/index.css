@@ -9,3 +9,8 @@ body,
   margin: 0;
   padding: 0;
 }
+
+.map-loader {
+  position: absolute;
+  z-index: 1;
+}

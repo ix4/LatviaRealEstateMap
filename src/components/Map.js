@@ -6,11 +6,12 @@ import QueryWithGlobalVariables from '../components/QueryWithGlobalVariables';
 import { GET_MAP_DATA } from '../apollo/Query';
 
 class MapData extends React.Component {
-  componentDidMount() {
+  componentDidUpdate(prevProps) {
+    this.props.map.data.forEach((feature) =>
+      this.props.map.data.remove(feature),
+    );
     this.props.map.data.addGeoJson(this.props.data);
-  }
 
-  componentDidUpdate() {
     this.props.map.data.setStyle((feature) => ({
       strokeColor: feature.getProperty('color'),
       strokeWeight: 0.1,
@@ -88,27 +89,24 @@ class Map extends React.Component {
   }
 
   render() {
-    const handleApiLoaded = this.handleApiLoaded.bind(this);
     return (
       <QueryWithGlobalVariables query={GET_MAP_DATA}>
-        {({ loading, data: { getMapData: data } }) => (
+        {({ loading, data }) => (
           <div style={{ height: '100%', width: '100%' }}>
-            <ClipLoader
-              color={'#fd6c6c'}
-              className={{ position: 'absolute', zIndex: 1 }}
-              loading={loading}
-            />
+            <div className="map-loader">
+              <ClipLoader color={'#fd6c6c'} loading={loading} />
+            </div>
 
             <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GMAPS_KEY }}
               defaultCenter={this.props.center}
               defaultZoom={this.props.zoom}
               options={{ styles: this.props.styles }}
-              onGoogleApiLoaded={(event) => handleApiLoaded(event)}
+              onGoogleApiLoaded={(event) => this.handleApiLoaded(event)}
               yesIWantToUseGoogleMapApiInternals={true}
             >
-              {this.state.map ? (
-                <MapData map={this.state.map} data={data} />
+              {this.state.map && data ? (
+                <MapData map={this.state.map} data={data.getMapData} />
               ) : (
                 ''
               )}
