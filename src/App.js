@@ -1,45 +1,46 @@
 import React from 'react';
-import { withNamespaces } from 'react-i18next';
-import progress from 'nprogress';
+import { Col, Container, Row } from 'reactstrap';
 
-import { GET_REGION_TABLE_DATA } from './apollo/Query';
-import Home from './pages/Home';
-import QueryWithGlobalVariables from './components/QueryWithGlobalVariables';
-
-progress.configure({
-  showSpinner: false,
-  speed: 1000,
-  trickleSpeed: 150,
-});
+import Chart from './components/Chart';
+import Map from './components/Map';
+import Navigation from './components/Navigation';
+import NewsletterSignup from './components/NewsletterSignup';
+import SideMenu from './components/SideMenu';
 
 class App extends React.Component {
   render() {
-    const { t } = this.props;
-
     return (
-      <QueryWithGlobalVariables query={GET_REGION_TABLE_DATA}>
-        {({ loading, error, data }) => {
-          if (loading) {
-            progress.start();
-          } else {
-            progress.done();
-          }
+      <div>
+        <Navigation />
 
-          if (error)
-            return (
-              <div>
-                Error: <pre>{JSON.stringify(error, null, 2)}</pre>
-              </div>
-            );
+        <Container fluid>
+          <Row>
+            <Col xs={{ order: 2 }} md="6" lg="7" xl="8">
+              <Map />
+            </Col>
+            <Col
+              xs={{ order: 1 }}
+              md={{ size: 6, order: 3 }}
+              lg="5"
+              xl="4"
+              className="pt-3 mb-3 pl-md-0"
+            >
+              <SideMenu />
+            </Col>
+          </Row>
 
-          if (!Object.keys(data).length && loading)
-            return <p>{t('loading')}</p>;
-
-          return <Home data={data} />;
-        }}
-      </QueryWithGlobalVariables>
+          <Row className="mb-3">
+            <Col md="6" lg="7" xl="8" className="mt-3">
+              <Chart />
+            </Col>
+            <Col md="6" lg="5" xl="4" className="mt-3 pl-md-0">
+              <NewsletterSignup />
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
 
-export default withNamespaces()(App);
+export default App;

@@ -1,6 +1,5 @@
 @import 'bootswatch-darkly.css';
 @import '~flag-icon-css/css/flag-icon.css';
-@import '~nprogress/nprogress.css';
 
 html,
 body,
@@ -9,8 +8,4 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-#nprogress .bar {
-  background-color: #fd6c6c;
 }

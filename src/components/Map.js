@@ -1,4 +1,5 @@
 import React from 'react';
+import { ClipLoader } from 'react-spinners';
 import GoogleMapReact from 'google-map-react';
 
 import QueryWithGlobalVariables from '../components/QueryWithGlobalVariables';
@@ -90,8 +91,14 @@ class Map extends React.Component {
     const handleApiLoaded = this.handleApiLoaded.bind(this);
     return (
       <QueryWithGlobalVariables query={GET_MAP_DATA}>
-        {({ data: { getMapData: data } }) => (
+        {({ loading, data: { getMapData: data } }) => (
           <div style={{ height: '100%', width: '100%' }}>
+            <ClipLoader
+              color={'#fd6c6c'}
+              className={{ position: 'absolute', zIndex: 1 }}
+              loading={loading}
+            />
+
             <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GMAPS_KEY }}
               defaultCenter={this.props.center}
