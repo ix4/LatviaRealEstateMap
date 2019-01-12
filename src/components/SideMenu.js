@@ -52,6 +52,12 @@ class SideMenu extends React.Component {
     runGraphQLMutation({ variables });
   }
 
+  formatPercentageValue(value) {
+    const number = (value * 100).toFixed(2);
+
+    return value > 0 ? `+${number}` : number;
+  }
+
   render() {
     const { t } = this.props;
 
@@ -68,14 +74,16 @@ class SideMenu extends React.Component {
           {
             Header: t('table.columns.region.price'),
             headerClassName: 'text-right',
-            accessor: 'price',
+            accessor: 'price_per_sqm.sell',
             className: 'text-right',
+            Cell: ({ value }) => (value ? value.toFixed(2) : ''),
           },
           {
             Header: t('table.columns.region.btr_ratio'),
             headerClassName: 'text-right',
-            accessor: 'btrRatio',
+            accessor: 'btl_ratio',
             className: 'text-right',
+            Cell: ({ value }) => (value ? value.toFixed(2) : ''),
           },
         ],
       },
@@ -85,26 +93,26 @@ class SideMenu extends React.Component {
           {
             Header: t('table.columns.yoy_change.price'),
             headerClassName: 'text-right',
-            accessor: 'priceChange',
+            accessor: 'price_per_sqm_change.sell',
             className: 'text-right',
             Cell: (props) => (
               <span
                 className={props.value > 0 ? 'text-success' : 'text-danger'}
               >
-                {props.value > 0 ? `+${props.value}` : props.value}%
+                {this.formatPercentageValue(props.value)}%
               </span>
             ),
           },
           {
             Header: t('table.columns.yoy_change.btr_ratio'),
             headerClassName: 'text-right',
-            accessor: 'btrRatioChange',
+            accessor: 'btl_ratio_change',
             className: 'text-right',
             Cell: (props) => (
               <span
                 className={props.value > 0 ? 'text-success' : 'text-danger'}
               >
-                {props.value > 0 ? `+${props.value}` : props.value}%
+                {this.formatPercentageValue(props.value)}%
               </span>
             ),
           },
@@ -183,23 +191,29 @@ class SideMenu extends React.Component {
         <Card>
           <CardBody>
             <QueryWithGlobalVariables query={GET_TABLE_DATA}>
-              {({ data: { getTableData } }) => (
-                <ReactTable
-                  data={getTableData}
-                  columns={columns}
-                  showPagination={false}
-                  defaultPageSize={getTableData.length}
-                  defaultSorted={[
-                    {
-                      id: 'name',
-                      desc: false,
-                    },
-                  ]}
-                  style={{
-                    height: '45vh',
-                  }}
-                />
-              )}
+              {({ data }) => {
+                if (!data || !data.getTableData) {
+                  return '';
+                }
+
+                return (
+                  <ReactTable
+                    data={data.getTableData}
+                    columns={columns}
+                    showPagination={false}
+                    defaultPageSize={data.getTableData.length}
+                    defaultSorted={[
+                      {
+                        id: 'name',
+                        desc: false,
+                      },
+                    ]}
+                    style={{
+                      height: '45vh',
+                    }}
+                  />
+                );
+              }}
             </QueryWithGlobalVariables>
           </CardBody>
         </Card>

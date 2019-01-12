@@ -28,18 +28,19 @@ export const GET_REGION_TABLE_DATA = gql`
 `;
 
 export const GET_TABLE_DATA = gql`
-  query GetTableData(
-    $category: Category
-    $start_date: Date!
-    $end_date: Date!
-  ) {
-    getTableData @client {
+  query GetTableData($category: Category!) {
+    getTableData(category: $category) {
       name
-      priceChange
-      btrRatioChange
-      price
-      btrRatio
-      median
+      price_per_sqm {
+        sell
+        rent
+      }
+      price_per_sqm_change {
+        sell
+        rent
+      }
+      btl_ratio
+      btl_ratio_change
     }
   }
 `;

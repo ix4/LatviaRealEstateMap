@@ -9,10 +9,7 @@ import bugsnagReact from '@bugsnag/plugin-react';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import mockMapGeojson from './geojson.json';
 import { resolvers } from './apollo/Resolvers';
-
-import tableData from './tabledata.mock';
 
 const bugsnagClient = window.bugsnagClient;
 
@@ -22,96 +19,8 @@ const client = new ApolloClient({
     resolvers,
     defaults: {
       category: 'apartment'.toUpperCase(),
-      start_date: '2018-01-01',
+      start_date: '2018-01-01', // @todo: dynamic
       end_date: '2018-02-01',
-
-      getChartData: [
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 0, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 8290,
-          count: 829,
-        },
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 1, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 6895,
-          count: 689,
-        },
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 2, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 6292,
-          count: 629,
-        },
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 3, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 6120,
-          count: 612,
-        },
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 4, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 6100,
-          count: 610,
-        },
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 5, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 6090,
-          count: 609,
-        },
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 6, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 6400,
-          count: 640,
-        },
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 7, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 6494,
-          count: 649,
-        },
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 8, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 7470,
-          count: 747,
-        },
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 9, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 7100,
-          count: 710,
-        },
-        {
-          __typename: 'ChartRow',
-          date: new Date(Date.UTC(2018, 10, 1)).toISOString().substr(0, 10),
-          pricePerSqm: 7900,
-          count: 790,
-        },
-      ],
-
-      getMapData: {
-        __typename: 'Object',
-        type: mockMapGeojson.type,
-        features: mockMapGeojson.features.map((feature) => ({
-          __typename: 'Object',
-          type: feature.type,
-          properties: {
-            __typename: 'Object',
-            ...feature.properties,
-          },
-          geometry: {
-            __typename: 'Object',
-            ...feature.geometry,
-          },
-        })),
-      },
-
-      getTableData: tableData,
     },
   },
 });
