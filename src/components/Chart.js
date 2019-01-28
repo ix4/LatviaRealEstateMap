@@ -29,14 +29,22 @@ class Chart extends React.Component {
             {data && !error ? (
               <ResponsiveContainer width="100%" height={200}>
                 <ComposedChart data={data.getChartData}>
+                  <Bar
+                    yAxisId="1"
+                    dataKey="count"
+                    fill="#413ea0"
+                    name={t('chart.count')}
+                  />
                   <Line
+                    yAxisId="2"
                     type="monotone"
                     dataKey="pricePerSqm"
                     name={t('chart.price')}
+                    unit="€"
                   />
-                  <Bar dataKey="count" fill="#413ea0" name={t('chart.count')} />
                   <XAxis dataKey="date" />
-                  <YAxis />
+                  <YAxis yAxisId="1" orientation="right" />
+                  <YAxis yAxisId="2" />
                   <Tooltip />
                 </ComposedChart>
               </ResponsiveContainer>
