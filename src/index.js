@@ -21,6 +21,7 @@ const client = new ApolloClient({
       category: 'apartment'.toUpperCase(),
       start_date: '2018-01-01', // @todo: dynamic
       end_date: '2018-02-01',
+      region: '',
     },
   },
 });

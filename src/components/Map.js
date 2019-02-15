@@ -1,23 +1,23 @@
 import React from 'react';
+import { Query } from 'react-apollo';
 import { ClipLoader } from 'react-spinners';
 import GoogleMapReact from 'google-map-react';
 
 import QueryWithGlobalVariables from '../components/QueryWithGlobalVariables';
-import { GET_MAP_DATA } from '../apollo/Query';
+import { GET_LOCAL_REGION, GET_MAP_DATA } from '../apollo/Query';
 
 class MapData extends React.Component {
   componentDidUpdate(prevProps) {
-    this.props.map.data.forEach((feature) =>
-      this.props.map.data.remove(feature),
-    );
-    this.props.map.data.addGeoJson(this.props.data);
+    const { activeRegion, map, data } = this.props;
 
-    this.props.map.data.setStyle((feature) => ({
+    map.data.forEach((feature) => map.data.remove(feature));
+    map.data.addGeoJson(data);
+
+    map.data.setStyle((feature) => ({
       strokeColor: feature.getProperty('color'),
-      strokeWeight: 0.1,
+      strokeWeight: feature.getProperty('name') === activeRegion ? 1 : 0.1,
       fillColor: feature.getProperty('color'),
-      fillOpacity: 0.5,
-      zIndex: feature.getProperty('Level') || 1,
+      fillOpacity: feature.getProperty('name') === activeRegion ? 1 : 0.5,
     }));
   }
 
@@ -106,7 +106,15 @@ class Map extends React.Component {
               yesIWantToUseGoogleMapApiInternals={true}
             >
               {this.state.map && data ? (
-                <MapData map={this.state.map} data={data.getMapData} />
+                <Query query={GET_LOCAL_REGION}>
+                  {({ data: { region } }) => (
+                    <MapData
+                      map={this.state.map}
+                      data={data.getMapData}
+                      activeRegion={region}
+                    />
+                  )}
+                </Query>
               ) : (
                 ''
               )}

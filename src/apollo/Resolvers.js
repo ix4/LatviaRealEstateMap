@@ -16,5 +16,12 @@ export const resolvers = {
       });
       return null;
     },
+
+    setHoveredRegion: (_, { region }, { cache }) => {
+      cache.writeData({
+        data: { region },
+      });
+      return null;
+    },
   },
 };

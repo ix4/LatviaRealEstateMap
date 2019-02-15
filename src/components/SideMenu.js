@@ -15,7 +15,11 @@ import {
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 
-import { SET_SELECTED_DATES, SET_SELECTED_CATEGORY } from '../apollo/Mutation';
+import {
+  SET_HOVERED_REGION,
+  SET_SELECTED_DATES,
+  SET_SELECTED_CATEGORY,
+} from '../apollo/Mutation';
 import { GET_LOCAL_STATE, GET_TABLE_DATA } from '../apollo/Query';
 import QueryWithGlobalVariables from '../components/QueryWithGlobalVariables';
 
@@ -197,21 +201,34 @@ class SideMenu extends React.Component {
                 }
 
                 return (
-                  <ReactTable
-                    data={data.getTableData}
-                    columns={columns}
-                    showPagination={false}
-                    defaultPageSize={data.getTableData.length}
-                    defaultSorted={[
-                      {
-                        id: 'name',
-                        desc: false,
-                      },
-                    ]}
-                    style={{
-                      height: '45vh',
-                    }}
-                  />
+                  <Mutation mutation={SET_HOVERED_REGION}>
+                    {(setHoveredRegion) => (
+                      <ReactTable
+                        data={data.getTableData}
+                        columns={columns}
+                        showPagination={false}
+                        defaultPageSize={data.getTableData.length}
+                        defaultSorted={[
+                          {
+                            id: 'name',
+                            desc: false,
+                          },
+                        ]}
+                        getTdProps={(state, rowInfo, column, instance) => {
+                          return {
+                            onMouseEnter: () => {
+                              setHoveredRegion({
+                                variables: { region: rowInfo.original.name },
+                              });
+                            },
+                          };
+                        }}
+                        style={{
+                          height: '45vh',
+                        }}
+                      />
+                    )}
+                  </Mutation>
                 );
               }}
             </QueryWithGlobalVariables>

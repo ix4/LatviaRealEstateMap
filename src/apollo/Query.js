@@ -8,6 +8,12 @@ export const GET_LOCAL_STATE = gql`
   }
 `;
 
+export const GET_LOCAL_REGION = gql`
+  query GetGlobalLocalRegion {
+    region @client
+  }
+`;
+
 export const GET_REGION_TABLE_DATA = gql`
   query GetRegionTableData(
     $category: Category
