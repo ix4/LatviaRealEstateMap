@@ -20,12 +20,12 @@
       "region": {
         "header": "Region",
         "name": "Name",
-        "price": "Median Price",
+        "price": "Price m2",
         "btr_ratio": "BtR ratio"
       },
       "yoy_change": {
         "header": "YoY Change",
-        "price": "Price",
+        "price": "Price m2",
         "btr_ratio": "BtR ratio"
       }
     }
