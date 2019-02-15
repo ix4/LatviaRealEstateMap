@@ -15,6 +15,11 @@ import { GET_CHART_DATA } from '../apollo/Query';
 import QueryWithGlobalVariables from '../components/QueryWithGlobalVariables';
 
 class Chart extends React.Component {
+  dateTickFormatter(data) {
+    const [year, month] = data.split('-');
+    return `${month}-'${year.substr(2)}`;
+  }
+
   render() {
     const { t } = this.props;
 
@@ -42,7 +47,10 @@ class Chart extends React.Component {
                     name={t('chart.price')}
                     unit="€"
                   />
-                  <XAxis dataKey="date" />
+                  <XAxis
+                    dataKey="date"
+                    tickFormatter={this.dateTickFormatter}
+                  />
                   <YAxis yAxisId="1" orientation="right" />
                   <YAxis yAxisId="2" />
                   <Tooltip />
