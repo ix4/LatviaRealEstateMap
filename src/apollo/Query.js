@@ -74,6 +74,12 @@ export const GET_MAP_DATA = gql`
         properties {
           name
           color
+          histogram {
+            values
+            bins
+            bin_width
+            bin_limits
+          }
         }
         geometry {
           type

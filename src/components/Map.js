@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Query } from 'react-apollo';
+import { Bar, BarChart, Tooltip } from 'recharts';
 import { ClipLoader } from 'react-spinners';
 import GoogleMapReact from 'google-map-react';
 
@@ -23,6 +25,40 @@ class MapData extends React.Component {
 
   render() {
     return '';
+  }
+}
+
+class MarkerExample extends React.Component {
+  render() {
+    const histogram = this.props.region.getProperty('histogram');
+    const chartData = histogram.values.map((val, index) => ({
+      index,
+      count: val,
+    }));
+
+    const total = histogram.values.reduce((a, b) => a + b, 0);
+
+    const formatter = (value, name, props) => {
+      const { index } = props.payload;
+      const fromVal = histogram.bin_limits[0] + histogram.bin_width * index;
+      const toVal = histogram.bin_limits[0] + histogram.bin_width * (index + 1);
+
+      return `${(fromVal < 0 ? 0 : fromVal).toFixed(2)}€ - ${toVal.toFixed(
+        2,
+      )}€`;
+    };
+
+    const labelFormatter = (index) => {
+      const percent = ((histogram.values[index] / total) * 100).toFixed(2);
+      return `${percent}%`;
+    };
+
+    return (
+      <BarChart width={400} height={200} data={chartData} barCategoryGap={1}>
+        <Tooltip formatter={formatter} labelFormatter={labelFormatter} />
+        <Bar dataKey="count" fill="#8884d8" name="Price m2" />
+      </BarChart>
+    );
   }
 }
 
@@ -75,16 +111,19 @@ class Map extends React.Component {
         }
       });
 
-      // @todo: make this beautiful
       infoWindow.setContent(`
-        Mediānā cena:<br>
-        <strong>${region.getProperty('price')} EUR</strong><br>
-        Mediānā cena par m2:<br>
-        <strong>${region.getProperty('pricePerSqm')} EUR</strong><br>
-        (${region.getProperty('name')})
+        <div id="infowindow-chart"></div>
       `);
+
       infoWindow.setPosition(event.latLng);
       infoWindow.open(map);
+
+      setTimeout(() => {
+        ReactDOM.render(
+          <MarkerExample region={region} />,
+          document.getElementById('infowindow-chart'),
+        );
+      });
     });
   }
 
