@@ -125,6 +125,10 @@ class SideMenu extends React.Component {
       },
     ];
 
+    function defaultSortMethod(a, b) {
+      return a.localeCompare(b);
+    }
+
     return (
       <div>
         <Query query={GET_LOCAL_STATE}>
@@ -241,6 +245,7 @@ class SideMenu extends React.Component {
                             desc: false,
                           },
                         ]}
+                        defaultSortMethod={defaultSortMethod}
                         getTdProps={(state, rowInfo, column, instance) => {
                           return {
                             onMouseEnter: () => {
