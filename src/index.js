@@ -14,7 +14,7 @@ import { resolvers } from './apollo/Resolvers';
 const bugsnagClient = window.bugsnagClient;
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000',
+  uri: process.env.API_URL,
   clientState: {
     resolvers,
     defaults: {
