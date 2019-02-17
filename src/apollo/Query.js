@@ -38,6 +38,8 @@ export const GET_REGION_TABLE_DATA = gql`
 
 export const GET_TABLE_DATA = gql`
   query GetTableData($category: Category!) {
+    type @client
+
     getTableData(category: $category) {
       name
       price_per_sqm {

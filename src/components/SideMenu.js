@@ -1,6 +1,5 @@
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
-import ReactTable from 'react-table';
 import { withNamespaces } from 'react-i18next';
 import {
   Card,
@@ -16,13 +15,13 @@ import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 
 import {
-  SET_HOVERED_REGION,
   SET_SELECTED_DATES,
   SET_SELECTED_TYPE,
   SET_SELECTED_CATEGORY,
 } from '../apollo/Mutation';
 import { GET_LOCAL_STATE, GET_TABLE_DATA } from '../apollo/Query';
-import QueryWithGlobalVariables from '../components/QueryWithGlobalVariables';
+import QueryWithGlobalVariables from './QueryWithGlobalVariables';
+import Table from './Table';
 
 import 'react-table/react-table.css';
 
@@ -57,77 +56,8 @@ class SideMenu extends React.Component {
     runGraphQLMutation({ variables });
   }
 
-  formatPercentageValue(value) {
-    const number = (value * 100).toFixed(2);
-
-    return value > 0 ? `+${number}` : number;
-  }
-
   render() {
     const { t } = this.props;
-
-    const columns = [
-      {
-        Header: t('table.columns.region.header'),
-        headerClassName: 'text-left',
-        columns: [
-          {
-            Header: t('table.columns.region.name'),
-            headerClassName: 'text-left',
-            accessor: 'name',
-          },
-          {
-            Header: t('table.columns.region.price'),
-            headerClassName: 'text-right',
-            accessor: 'price_per_sqm.sell',
-            className: 'text-right',
-            Cell: ({ value }) => (value ? `${value.toFixed(2)}€` : ''),
-          },
-          {
-            Header: t('table.columns.region.btr_ratio'),
-            headerClassName: 'text-right',
-            accessor: 'btl_ratio',
-            className: 'text-right',
-            Cell: ({ value }) => (value ? value.toFixed(2) : ''),
-          },
-        ],
-      },
-      {
-        Header: t('table.columns.yoy_change.header'),
-        columns: [
-          {
-            Header: t('table.columns.yoy_change.price'),
-            headerClassName: 'text-right',
-            accessor: 'price_per_sqm_change.sell',
-            className: 'text-right',
-            Cell: (props) => (
-              <span
-                className={props.value > 0 ? 'text-success' : 'text-danger'}
-              >
-                {this.formatPercentageValue(props.value)}%
-              </span>
-            ),
-          },
-          {
-            Header: t('table.columns.yoy_change.btr_ratio'),
-            headerClassName: 'text-right',
-            accessor: 'btl_ratio_change',
-            className: 'text-right',
-            Cell: (props) => (
-              <span
-                className={props.value > 0 ? 'text-success' : 'text-danger'}
-              >
-                {this.formatPercentageValue(props.value)}%
-              </span>
-            ),
-          },
-        ],
-      },
-    ];
-
-    function defaultSortMethod(a, b) {
-      return a.localeCompare(b);
-    }
 
     return (
       <div>
@@ -232,35 +162,10 @@ class SideMenu extends React.Component {
                 }
 
                 return (
-                  <Mutation mutation={SET_HOVERED_REGION}>
-                    {(setHoveredRegion) => (
-                      <ReactTable
-                        data={data.getTableData}
-                        columns={columns}
-                        showPagination={false}
-                        defaultPageSize={data.getTableData.length}
-                        defaultSorted={[
-                          {
-                            id: 'name',
-                            desc: false,
-                          },
-                        ]}
-                        defaultSortMethod={defaultSortMethod}
-                        getTdProps={(state, rowInfo, column, instance) => {
-                          return {
-                            onMouseEnter: () => {
-                              setHoveredRegion({
-                                variables: { region: rowInfo.original.name },
-                              });
-                            },
-                          };
-                        }}
-                        style={{
-                          height: '45vh',
-                        }}
-                      />
-                    )}
-                  </Mutation>
+                  <Table
+                    data={data.getTableData}
+                    type={data.type.toLowerCase()}
+                  />
                 );
               }}
             </QueryWithGlobalVariables>
