@@ -55,8 +55,8 @@ export const GET_TABLE_DATA = gql`
 `;
 
 export const GET_CHART_DATA = gql`
-  query GetChartData($category: Category!) {
-    getChartData(category: $category) {
+  query GetChartData($category: Category!, $type: Type!) {
+    getChartData(category: $category, type: $type) {
       date
       count
       pricePerSqm: price_per_sqm
