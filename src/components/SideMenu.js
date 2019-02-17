@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import { withNamespaces } from 'react-i18next';
+import { ClipLoader } from 'react-spinners';
 import {
   Card,
   CardBody,
@@ -156,16 +157,20 @@ class SideMenu extends React.Component {
         <Card>
           <CardBody>
             <QueryWithGlobalVariables query={GET_TABLE_DATA}>
-              {({ data }) => {
-                if (!data || !data.getTableData) {
-                  return '';
-                }
-
+              {({ loading, data }) => {
                 return (
-                  <Table
-                    data={data.getTableData}
-                    type={data.type.toLowerCase()}
-                  />
+                  <div>
+                    <ClipLoader color={'#fd6c6c'} loading={loading} />
+
+                    {data && data.getTableData && !loading ? (
+                      <Table
+                        data={data.getTableData}
+                        type={data.type.toLowerCase()}
+                      />
+                    ) : (
+                      ''
+                    )}
+                  </div>
                 );
               }}
             </QueryWithGlobalVariables>
