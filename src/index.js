@@ -14,11 +14,12 @@ import { resolvers } from './apollo/Resolvers';
 const bugsnagClient = window.bugsnagClient;
 
 const client = new ApolloClient({
-  uri: 'https://api.brokalys.com',
+  uri: 'http://localhost:3000',
   clientState: {
     resolvers,
     defaults: {
       category: 'apartment'.toUpperCase(),
+      type: 'sell'.toUpperCase(),
       start_date: '2018-01-01', // @todo: dynamic
       end_date: '2018-02-01',
       region: '',

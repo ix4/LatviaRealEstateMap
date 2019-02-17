@@ -12,6 +12,12 @@ export const SET_SELECTED_CATEGORY = gql`
   }
 `;
 
+export const SET_SELECTED_TYPE = gql`
+  mutation SetSelectedType($type: Type!) {
+    setSelectedType(type: $type) @client
+  }
+`;
+
 export const SET_HOVERED_REGION = gql`
   mutation SetHoveredRegion($region: String!) {
     setHoveredRegion(region: $region) @client

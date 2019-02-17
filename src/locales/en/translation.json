@@ -10,6 +10,13 @@
         "LAND": "Land"
       }
     },
+    "type": {
+      "label": "Classified type",
+      "values": {
+        "SELL": "Sell",
+        "RENT": "Rent"
+      }
+    },
     "start_date": {
       "label": "Selected Month"
     }

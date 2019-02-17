@@ -17,6 +17,13 @@ export const resolvers = {
       return null;
     },
 
+    setSelectedType: (_, { type }, { cache }) => {
+      cache.writeData({
+        data: { type },
+      });
+      return null;
+    },
+
     setHoveredRegion: (_, { region }, { cache }) => {
       cache.writeData({
         data: { region },

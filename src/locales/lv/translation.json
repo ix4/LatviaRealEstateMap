@@ -10,6 +10,13 @@
         "LAND": "Zene"
       }
     },
+    "type": {
+      "label": "Sludinājuma tips",
+      "values": {
+        "SELL": "Pārdod",
+        "RENT": "Īrē"
+      }
+    },
     "start_date": {
       "label": "Izvēlētais mēnesis"
     }

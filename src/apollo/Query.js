@@ -5,6 +5,7 @@ export const GET_LOCAL_STATE = gql`
     start_date @client
     end_date @client
     category @client
+    type @client
   }
 `;
 
@@ -17,11 +18,13 @@ export const GET_LOCAL_REGION = gql`
 export const GET_REGION_TABLE_DATA = gql`
   query GetRegionTableData(
     $category: Category
+    $type: Type
     $start_date: Date!
     $end_date: Date!
   ) {
     getRegions(
       category: $category
+      type: $type
       start_date: $start_date
       end_date: $end_date
     ) {
@@ -62,9 +65,15 @@ export const GET_CHART_DATA = gql`
 `;
 
 export const GET_MAP_DATA = gql`
-  query GetMapData($category: Category!, $start_date: Date!, $end_date: Date!) {
+  query GetMapData(
+    $category: Category!
+    $type: Type!
+    $start_date: Date!
+    $end_date: Date!
+  ) {
     getMapData(
       category: $category
+      type: $type
       start_date: $start_date
       end_date: $end_date
     ) {

@@ -18,6 +18,7 @@ import { extendMoment } from 'moment-range';
 import {
   SET_HOVERED_REGION,
   SET_SELECTED_DATES,
+  SET_SELECTED_TYPE,
   SET_SELECTED_CATEGORY,
 } from '../apollo/Mutation';
 import { GET_LOCAL_STATE, GET_TABLE_DATA } from '../apollo/Query';
@@ -153,6 +154,32 @@ class SideMenu extends React.Component {
                             {t('form.category.values.HOUSE')}
                           </option>
                           {/*<option value="LAND">{t('form.category.values.LAND')}</option>*/}
+                        </Input>
+                      </FormGroup>
+                    )}
+                  </Mutation>
+                </Col>
+
+                <Col sm={6}>
+                  <Mutation mutation={SET_SELECTED_TYPE}>
+                    {(setSelectedType) => (
+                      <FormGroup>
+                        <Label for="fieldType">{t('form.type.label')}</Label>
+                        <Input
+                          type="select"
+                          name="type"
+                          id="fieldType"
+                          value={data.type}
+                          onChange={(event) =>
+                            this.handleInputChange(event, setSelectedType)
+                          }
+                        >
+                          <option value="SELL">
+                            {t('form.type.values.SELL')}
+                          </option>
+                          <option value="RENT">
+                            {t('form.type.values.RENT')}
+                          </option>
                         </Input>
                       </FormGroup>
                     )}
