@@ -15,7 +15,7 @@ class Table extends React.Component {
   }
 
   defaultSortMethod(a, b) {
-    return a.localeCompare(b);
+    return a.toString().localeCompare(b);
   }
 
   render() {
