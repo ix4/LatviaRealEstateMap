@@ -16,6 +16,6 @@ body,
   z-index: 1;
 }
 
-.recharts-tooltip-label {
-  color: red;
+.gm-style {
+  color: #000;
 }

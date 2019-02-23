@@ -36,7 +36,7 @@ class Table extends React.Component {
             headerClassName: 'text-right',
             accessor: `price_per_sqm.${type}`,
             className: 'text-right',
-            Cell: ({ value }) => (value ? `${value.toFixed(2)}€` : ''),
+            Cell: ({ value }) => (value ? `${value}€` : ''),
           },
           {
             Header: t('table.columns.region.btr_ratio'),

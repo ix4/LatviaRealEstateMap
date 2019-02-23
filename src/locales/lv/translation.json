@@ -38,6 +38,15 @@
     }
   },
 
+  "map_popup": {
+    "histogram": {
+      "title": "Price Histogram",
+      "bar": {
+        "label": "Cena m2"
+      }
+    }
+  },
+
   "chart": {
     "price": "Price per sqm",
     "count": "Classified Count"
